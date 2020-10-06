@@ -1,0 +1,4 @@
+/*
+The CourseGrid component should be responsive.
+The number of grid columns should respond to the size of the screen
+ */
