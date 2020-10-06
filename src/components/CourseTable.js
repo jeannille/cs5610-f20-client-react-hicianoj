@@ -1,0 +1,3 @@
+/*
+CourseTable renders an array of courses as a table where each row represents a course.
+ */

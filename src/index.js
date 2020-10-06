@@ -13,6 +13,7 @@ ReactDOM.render(
         <CourseListComponent instructor="Wax Ladrian" term="Fall 2020"/>
         {/*//whatever this holds is what gets rendered on the webpage*/}
     </div>,
+    //renders everything above inside root
 document.getElementById('root')
 );
 

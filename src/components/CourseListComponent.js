@@ -6,7 +6,7 @@ import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../servi
 //returns an html item
 
 //implicit version of function() { etc} return etc
-//grabs and deconstricts CourseListComponent object, and extracts desired fields
+//grabs and deconstructs CourseListComponent object, and extracts desired fields
 //value of keys, gets bound by the original obj, becomes local value
 //function here, takes one large argument, and parses, order doesnt matter
 //theyre being bound by their name
@@ -22,18 +22,6 @@ class CourseListComponent extends React.Component {
     }
 
     //passing the actual object to be deleted
-    deleteCourse = (course) => {
-        this.setState()
-    }
-    //     deleteCourse(course._id)
-    //         .then(status => this.setState(prevState =>
-    //         ({
-    //             courses: prevState.courses.filter(c => c._id !== course._id)
-    //         })
-    //         ))
-    //         .catch(error => {
-    //         })
-    // }
 
     componentDidMount() {
         findAllCourses()
@@ -44,9 +32,11 @@ class CourseListComponent extends React.Component {
             })
     }
 
+    //once status is returned, safe to delete 1:29
     deleteCourse = (course) => {
         deleteCourse(course._id)
             .then(status => this.setState(prevState => ({
+                                              //re-renders state, array
                                               courses: prevState.courses.filter(c => c._id !== course._id)
                                           })
             ))
@@ -91,16 +81,16 @@ class CourseListComponent extends React.Component {
                         //     take function as argument, whatever the function returns, oit
                         //     concatenates all the outputs into one big string
                         this.state.courses.map(course =>
-                             <CourseRowComponent
-                               courseBeingEdited={this.state.courseBeingEdited}
-                               editCourse={this.editCourse}
-                               deleteCourse={this.deleteCourse}
-                               course={course}/>
+                                                   <CourseRowComponent
+                                                       courseBeingEdited={this.state.courseBeingEdited}
+                                                       editCourse={this.editCourse}
+                                                       deleteCourse={this.deleteCourse}
+                                                       course={course}/>
                         )
                     }
                 </table>
                 <button onClick={this.addCourse}
-                        className="btn btn=primary">
+                        className="btn btn-primary">
                     Add a Course
                 </button>
             </div>
