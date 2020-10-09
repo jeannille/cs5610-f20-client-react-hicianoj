@@ -1,13 +1,13 @@
 /*
-CourseEditor component  render a course instance selected from the CourseGrid
+CourseEditorComponent component  render a course instance selected from the CourseGrid
  or CourseTable component.
  */
 
 import React from "react";
 
-import CourseListComponent from "./CourseListComponent";
 
-const CourseEditor = () =>
+
+const CourseEditorComponent = () =>
     <div className="row">
         {/*<div className="col-3">*/}
         {/*    <ModuleList modules=*/}

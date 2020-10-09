@@ -24,9 +24,13 @@ export const createCourse = (newCourse) =>
 /*
 Deletes course instance whose id matches the id parameter.
  */
+// export const deleteCourse = (courseId) =>
+//     fetch(url).then(response => response.json())
 export const deleteCourse = (courseId) =>
-    fetch(url).then(response => response.json())
-
+    fetch(`${url}/${courseId}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
 
 /*
 Updates the course instance whose id matches the id parameter.
@@ -42,6 +46,8 @@ export const updateCourse = (courseId, newCourse) => {
     }).then(response => response.json())
 
 }
+
+
 
 /*
 Retrieves a course instance that matches the id parameter
