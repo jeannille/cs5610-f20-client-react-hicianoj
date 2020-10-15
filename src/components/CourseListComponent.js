@@ -52,7 +52,7 @@ class CourseListComponent extends React.Component {
             modified: (new Date()).toDateString()
         }
 
-        createCourse(newCourse)
+    createCourse(newCourse)
             .then(actualCourse => this.setState(prevState => ({
                 courses: [
                     ...prevState.courses, actualCourse
@@ -76,11 +76,12 @@ class CourseListComponent extends React.Component {
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
                 <table className="table">
                     {
-                        // map  iterates over  array elements, as it iterates
-                        // every single item as it iterates every single time
-                        //     take function as argument, whatever the function returns, oit
-                        //     concatenates all the outputs into one big string
+                        // map  function iterates over  array elements as it iterates
+                        // every single time
+                        //     take function as argument, whatever the function returns it
+                        //mapping a course to each
                         this.state.courses.map(course =>
+                                                   //giving properties/attr to CourseRow obj
                                                    <CourseRowComponent
                                                        courseBeingEdited={this.state.courseBeingEdited}
                                                        editCourse={this.editCourse}
@@ -102,6 +103,6 @@ class CourseListComponent extends React.Component {
 //{} notifies that  this is an expression that needs to be evaluated 58:17
 //wrap in an outer div to be able to grab as one component 1:01
 
-// you can decalre at most one default
+// you can declare at most one default
 
 export default CourseListComponent

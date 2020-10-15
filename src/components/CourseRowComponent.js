@@ -1,4 +1,4 @@
-// row inside of a table, we are turning into a compoment
+// row inside of a table, we are turning into a components
 
 import React from "react";
 import {Link} from "react-router-dom";
@@ -18,7 +18,6 @@ export default class CourseRowComponent extends React.Component {
 
     render() {
         return (
-
             <tr>
                 <td>
                     {
@@ -35,7 +34,7 @@ export default class CourseRowComponent extends React.Component {
                             }
                             value={this.state.course.title}/>
                     }
-                    {
+                    { //while course not being edit &
                         !this.state.editing &&
                         <Link to={`/edit/${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
                     }
@@ -62,8 +61,7 @@ export default class CourseRowComponent extends React.Component {
                     }
                     {
                         this.state.editing &&
-                        <button
-                            onClick={() => {
+                        <button onClick={() => {
                                 updateCourse(this.state.course._id, this.state.course)
                                     .then(status => this.setState({editing: false}))
                             }}
