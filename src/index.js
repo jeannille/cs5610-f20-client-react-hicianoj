@@ -1,3 +1,5 @@
+//REACTDOM is only loaded once in JS and never again, every comp will need
+//at least react-dom
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';

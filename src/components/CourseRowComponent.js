@@ -5,12 +5,12 @@ import {Link} from "react-router-dom";
 import {updateCourse} from "../services/CourseService";
 
 const courseBeingEdited = false
-const editCourse = () => {
-}
+const editCourse = () => {}
 
 //creating class based (not function based)
 
 export default class CourseRowComponent extends React.Component {
+
     state = {
         editing: false,
         course: this.props.course
@@ -22,7 +22,6 @@ export default class CourseRowComponent extends React.Component {
                 <td>
                     {
                         this.state.editing &&
-                        // course === courseBeingEdited &&
                         <input
                             className="form-control"
                             onChange={(event) => {
@@ -36,7 +35,8 @@ export default class CourseRowComponent extends React.Component {
                     }
                     { //while course not being edit &
                         !this.state.editing &&
-                        <Link to={`/edit/${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
+                        <Link
+                            to={`/edit/${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
                     }
                 </td>
 
@@ -50,7 +50,7 @@ export default class CourseRowComponent extends React.Component {
                     {/*this postpones event, when it actually happens*/}
                     <button
                         onClick={() => this.props.deleteCourse(this.props.course)}
-                        className="btn btn-warning" >
+                        className="btn btn-warning">
                         Delete
                     </button>
                     {
@@ -61,7 +61,8 @@ export default class CourseRowComponent extends React.Component {
                     }
                     {
                         this.state.editing &&
-                        <button onClick={() => {
+                        <button
+                            onClick={() => {
                                 updateCourse(this.state.course._id, this.state.course)
                                     .then(status => this.setState({editing: false}))
                             }}
@@ -74,5 +75,5 @@ export default class CourseRowComponent extends React.Component {
 }
 
 //have changed from func to class
-//export default CourseRowComponent
+
 

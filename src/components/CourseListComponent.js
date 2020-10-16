@@ -36,8 +36,8 @@ class CourseListComponent extends React.Component {
     deleteCourse = (course) => {
         deleteCourse(course._id)
             .then(status => this.setState(prevState => ({
-                                              //re-renders state, array
-                                              courses: prevState.courses.filter(c => c._id !== course._id)
+                //re-renders state, array
+                courses: prevState.courses.filter(c => c._id !== course._id)
                                           })
             ))
             .catch(error => {
@@ -76,28 +76,21 @@ class CourseListComponent extends React.Component {
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
                 <table className="table">
                     {
-                        // map  function iterates over  array elements as it iterates
-                        // every single time
-                        //     take function as argument, whatever the function returns it
-                        //mapping a course to each
+                        // maps key to value, course to value
                         this.state.courses.map(course =>
                                                    //giving properties/attr to CourseRow obj
                                                    <CourseRowComponent
-                                                       courseBeingEdited={this.state.courseBeingEdited}
-                                                       editCourse={this.editCourse}
                                                        deleteCourse={this.deleteCourse}
                                                        course={course}/>
                         )
                     }
                 </table>
-                <button onClick={this.addCourse}
-                        className="btn btn-primary">
+                <button onClick={this.addCourse} className="btn btn-primary">
                     Add a Course
                 </button>
             </div>
         )
     }
-
 }
 
 //{} notifies that  this is an expression that needs to be evaluated 58:17

@@ -3,6 +3,8 @@ Create a React component called CourseEditor, renders a course instance selected
  CourseGrid or CourseTable component (CourseRowComponents will map to edit when clicked on).
  Modules, Lessons will be static.
  */
+//using objects to create layers of abstraction
+//building an aggregation of multiple subcomponents (ie. modulelist, lessonTabs)
 import React from "react";
 import {findCourseById} from "../services/CourseService";
 

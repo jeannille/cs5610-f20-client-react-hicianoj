@@ -3,7 +3,6 @@
 
 const url = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/courses"
 
-
 export const createCourse = (newCourse) =>
     fetch(url, {
         method: 'POST',
@@ -12,7 +11,6 @@ export const createCourse = (newCourse) =>
             'content-type': 'application/json'
         }
     }).then(response => response.json())
-
 
 /*
 Retrieves all course instances as an array of courses
@@ -30,7 +28,6 @@ export const findCourseById = (courseId) =>
 Creates a new course instance and adds it to the collection of courses
  */
 
-
 /*
 Updates the course instance whose id matches the id parameter.
 Updates the instance with values in course parameter.
@@ -43,18 +40,8 @@ export const updateCourse = (courseId, newCourse) => {
             "content-type": "application/json"
         }
     }).then(response => response.json())
-
 }
 
-
-/*
-Retrieves a course instance that matches the id parameter
- */
-export const findAllCoursesById = (courseId) => {
-    fetch(`${url}/${courseId}`, {
-    }).then(response => response.json())
-
-}
 /*
 Deletes course instance whose id matches the id parameter.
  */
