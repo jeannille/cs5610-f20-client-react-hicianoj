@@ -10,12 +10,12 @@ import {findCourseById} from "../services/CourseService";
 
 class CourseEditorComponent extends React.Component {
 
-    // state = {
-    //     course: {
-    //         _id: "",
-    //         title: ""
-    //     }
-    // }
+    state = {
+        course: {
+            _id: "",
+            title: ""
+        }
+    }
 
     //route passes ID to course editor
     componentDidMount() {

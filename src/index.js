@@ -10,7 +10,7 @@ import CourseListComponent from "./components/CourseListComponent";
 import Profile from "./components/Profile"
 import Register from "./components/Register"
 import Login from "./components/Login"
-import {CourseManagerComponent} from "./components/CourseManager";
+import {CourseManagerComponent} from "./components/CourseManagerComponent";
 
 
 ReactDOM.render(
