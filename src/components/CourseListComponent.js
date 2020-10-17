@@ -6,13 +6,14 @@ import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../servi
 class CourseListComponent extends React.Component {
 //can now use local state react recognizes state change, and any parts that depend on the state
 // will be re-rendered
+
+
     state = {
         courses: [],
-        courseBeingEdited: {}
+        courseBeingEdited: {} //boolean flag
     }
 
-    //passing the actual object to be deleted
-
+    //lifecycle function fetches courses from data, sets & renders
     componentDidMount() {
         findAllCourses()
             .then(courses => {
@@ -22,6 +23,7 @@ class CourseListComponent extends React.Component {
             })
     }
 
+    //passing the actual object to be deleted
     deleteCourse = (course) => {
         deleteCourse(course._id)
             .then(status => this.setState(prevState => ({
@@ -33,63 +35,52 @@ class CourseListComponent extends React.Component {
 
     addCourse = () => {
         const newCourse = {
-            _id: (new Date()).getMilliseconds() + "",
             title: "New Course",
             owner: "me",
-            lastOpened: (new Date()).toDateString()
+            modified: (new Date()).toDateString()
         }
-        this.setState(prevState => ({
-            courses: [
-                ...prevState.courses, newCourse
-            ]
-        }))
+        createCourse(newCourse)
+            .then(actualCourse => this.setState(prevState => ({
+                courses: [
+                    ...prevState.courses, actualCourse
+                ]
+            })))
+
     }
 
-    //returns an array, copies previous array and append array
-
-    // createCourse(newCourse)
-    //         .then(actualCourse => this.setState(prevState => ({
-    //             courses: [
-    //                 ...prevState.courses, actualCourse
-    //             ]
-    //         })))
-
-
-//
-// //if
-// editCourse = (course) => {
-//     this.setState({
-//                       courseBeingEdited: course
-//                   })
-// }
+//sets courseBeingEdited flag to course when clicked to edit
+    editCourse = (course) => {
+        this.setState({
+                          courseBeingEdited: course
+                      })
+    }
 
 //what instance of CourseListComponent will return/render
     render() {
-    return (
-        <div>
-            {/*java classes can keep track of their own state*/}
-            <h1>Course List (Professor: {this.props.instructor}) {this.props.term}</h1>
-            {/*can't use keyword 'class' because its a key word in javascript E6
+        return (
+            <div>
+                {/*java classes can keep track of their own state*/}
+                <h1>Course List (Professor: {this.props.instructor}) {this.props.term}</h1>
+                {/*can't use keyword 'class' because its a key word in javascript E6
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
-            <table className="table">
-                {
-                    // maps key to value, for courses
-                    this.state.courses.map(course =>
-                                               //giving properties/attr to CourseRow obj
-                                               <CourseRowComponent
-                                                   courseBeingEdited={this.state.courseBeingEdited}
-                                                   editCourse={this.editCourse}
-                                                   deleteCourse={this.deleteCourse}
-                                                   course={course}/>
-                    )
-                }
-            </table>
-            <button onClick={this.addCourse} className="btn btn-primary">
-                Add a Course
-            </button>
-        </div>
-    )
-}}
+                <table className="table">
+                    {
+                        // maps key to value, for courses
+                        this.state.courses.map(course =>
+                                                   //giving properties/attr to CourseRow obj
+                                                   <CourseRowComponent
+                                                       deleteCourse={this.deleteCourse}
+                                                       course={course}/>
+                        )
+                    }
+                </table>
+                <button onClick={this.addCourse} className="btn btn-primary">
+                    Add a Course
+                </button>
+            </div>
+        )
+    }
+}
 
 //{} notifies that  this is an expression that needs to be evaluated 58:17
 //wrap in an outer div to be able to grab as one component 1:01

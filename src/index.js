@@ -4,9 +4,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
 import "bootstrap/dist/css/bootstrap.min.css"
+import "font-awesome/css/font-awesome.css"
+import "font-awesome/css/font-awesome.min.css"
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import CourseListComponent from "./components/CourseListComponent";
+import CourseEditorComponent from "./components/CourseEditorComponent";
 import Profile from "./components/Profile"
 import Register from "./components/Register"
 import Login from "./components/Login"
