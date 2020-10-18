@@ -13,11 +13,11 @@ import Profile from "./Profile";
 import CourseListComponent from "./CourseListComponent";
 import CourseEditorComponent from "./CourseEditorComponent";
 import CourseGrid from "./CourseGrid";
-import CourseTableComponent from "./CourseTableComponent"
+import CourseTableComponent from "./CourseTableComponet";
 
 //wrap in browser router so things inside can navigate
 //main way of components talking to one another is by passing functions
-//CourseManager is parent to CourseTableComponent & CourseGrid
+//CourseManager is parent to CourseListComponent & CourseGrid
 //one subcomponent of Manager will take list of courses
 //and render them different than another comp. using same courses (render as grid)
 //list would live in the parent component and can pass the list to both of them (man)
@@ -26,6 +26,7 @@ export class CourseManagerComponent extends React.Component {
     // toggle = () =>
     //     alert('toggle')
 
+    //keep state of courses in Manager instead of List
     state = {
         // layout: 'toggle'
         courses: []
@@ -35,15 +36,16 @@ export class CourseManagerComponent extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
 
+            <BrowserRouter>
                 <div className="container">
                     <Link to="/login">Login</Link> |
                     <Link to="/register">Register</Link> |
                     <Link to="/profile">Profile</Link> |
                     <Link to="/courses">Courses</Link> |
-                    <Link to="/edit">Course Editor</Link> |
-                    <Link to="/courses/table">Table</Link> |
+                    <Link to="/edit">CourseEditor</Link> |
+                    <Link to="/table">CourseTable</Link> |
+
                     <Link to="/courses/grid">Grid</Link>
 
                     {/*routes look for exact url path match*/}
@@ -56,20 +58,19 @@ export class CourseManagerComponent extends React.Component {
                         {/*pass CourseList obj's attribute instructor*/}
                         <CourseListComponent courses = {this.state.courses} instructor="Wax Ladrian"/>
                     </Route>
-                    {/*<Route path="/course/table"*/}
-                    {/*       render={() => <CourseTableComponent courses={courses}/>}/>*/}
-                    {/*<Route path="/course/grid"*/}
-                    {/*       render={() => <CourseGrid courses={courses}/>}/>*/}
+                    <Route path="/course/grid"
+                           render={() => <CourseGrid courses={this.state.courses}/>}/>
 
                     <Route
                         path="/edit" exact component={CourseEditorComponent}/>
 
-
-                    {/*<Route path="/table" component={CourseTableComponent}/>*/}
+                    {/*<Route path="/table" render={() => <CourseTableComponent courses={this.state.courses}/>}/>*/}
 
                     {/*//whatever this holds is what gets rendered on the webpage*/}
                 </div>
             </BrowserRouter>
+
+
         );
     }
 }

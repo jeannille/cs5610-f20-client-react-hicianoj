@@ -1,17 +1,27 @@
 import React from "react";
 import CourseRowComponent from "./CourseRowComponent";
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
+import "font-awesome/css/font-awesome.css"
+import CourseTableComponent from "./CourseTableComponet";
+import Profile from "./Profile";
 
 //instance of this class, returns/renders a div
+
+//parent of CourseTable and CourseGrid
 class CourseListComponent extends React.Component {
 //can now use local state react recognizes state change, and any parts that depend on the state
 // will be re-rendered
 
-
     state = {
         courses: [],
-        courseBeingEdited: {} //boolean flag
+        courseBeingEdited: {}, //boolean flag
+        layout: 'grid'
+
     }
+
+    toggle = () =>
+        alert('toggle')
+
 
     //lifecycle function fetches courses from data, sets & renders
     componentDidMount() {
@@ -61,6 +71,10 @@ class CourseListComponent extends React.Component {
             <div>
                 {/*java classes can keep track of their own state*/}
                 <h1>Course List (Professor: {this.props.instructor}) {this.props.term}</h1>
+                <button onClick={this.toggle}> Toggle </button>
+                {/*{this.state.layout === 'grid' && {Profile} }*/}
+                {/*{this.state.layout === 'table' && CourseTableComponent}*/}
+
                 {/*can't use keyword 'class' because its a key word in javascript E6
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
                 <table className="table">

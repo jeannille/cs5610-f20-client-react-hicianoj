@@ -1,12 +1,13 @@
 /*
 Create a React component called CourseEditor, renders a course instance selected from the
- CourseGrid or CourseTableComponent component (CourseRowComponents will map to edit when clicked on).
+ CourseGrid or CourseListComponent component (CourseRowComponents will map to edit when clicked on).
  Modules, Lessons will be static.
  */
 //using objects to create layers of abstraction
 //building an aggregation of multiple subcomponents (ie. modulelist, lessonTabs)
 import React from "react";
 import {findCourseById} from "../services/CourseService";
+import "font-awesome/css/font-awesome.css"
 
 export default class CourseEditorComponent extends React.Component {
 
@@ -45,26 +46,26 @@ export default class CourseEditorComponent extends React.Component {
                         <ul class="list-group wbdv-module-list">
                             <li class="list-group-item active wbdv-module-item">Module 1: Intro &
                                 Review
-                                <i class="fas fa-times float-right wbdv-module-item-delete-btn "></i>
+                                <i class="fa fa-times float-right wbdv-module-item-delete-btn "></i>
                             </li>
                             <li class="list-group-item wbdv-module-item">Module 2: Divide & Conquer
-                                <i class="fas fa-times float-right wbdv-module-item-delete-btn"></i>
+                                <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
                             </li>
                             <li class="list-group-item wbdv-module-item">Module 3 :Dynamic
                                 Programming
-                                <i class="fas fa-times float-right wbdv-module-item-delete-btn"></i>
+                                <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
                             </li>
                             <li class="list-group-item wbdv-module-item"> Module 4: Greedy
                                 Algorithms
-                                <i class="fas fa-times float-right wbdv-module-item-delete-btn"></i>
+                                <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
                             </li>
                             <li class="list-group-item wbdv-module-item">Module 5: Graph
                                 Algorithms<i
-                                    class="fas fa-times float-right wbdv-module-item-delete-btn"></i>
+                                    class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
                             </li>
 
                             <li class="list-group-item">New Module<i
-                                class="fas fa-plus float-right wbdv-module-item-delete-btn"></i>
+                                class="fa fa-plus float-right wbdv-module-item-delete-btn"></i>
                             </li>
                         </ul>
                     </div>
@@ -100,7 +101,7 @@ export default class CourseEditorComponent extends React.Component {
                             </li>
                             <li className="nav-item wbdv-topic-pill">
                                 <a href="#" className="nav-link wbdv-topic-add-btn"><i
-                                    className="far fa-plus fa-.5x"></i> Add
+                                    className="fa fa-plus fa-.5x"></i> Add
                                     topic</a></li>
                         </ul>
 
@@ -112,10 +113,10 @@ export default class CourseEditorComponent extends React.Component {
                                 Heading Widget
                                 <span className="float-right">
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-up"></i>
+                            <i className="fa fa-arrow-up"></i>
                         </a>
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-down"></i>
+                            <i className="fa fa-arrow-down"></i>
                         </a>
                         <select>
                             <option>Heading</option>
@@ -123,7 +124,7 @@ export default class CourseEditorComponent extends React.Component {
                             <option>Document</option>
                             <option>Slides</option>
                         </select>
-                        <a className="btn btn-warning"><i className="fas fa-trash"></i></a>
+                        <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
                             </span>
                             </h3>
 
@@ -146,10 +147,10 @@ export default class CourseEditorComponent extends React.Component {
                                 Paragraph Widget
                                 <span className="float-right">
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-up"></i>
+                            <i className="fa fa-arrow-up"></i>
                         </a>
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-down"></i>
+                            <i className="fa fa-arrow-down"></i>
                         </a>
                         <select>
                             <option>Paragraph</option>
@@ -157,7 +158,7 @@ export default class CourseEditorComponent extends React.Component {
                             <option>Paragraph</option>
                             <option>List</option>
                         </select>
-                        <a className="btn btn-warning"><i className="fas fa-trash"></i></a>
+                        <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
                             </span>
                             </h3>
 
@@ -176,10 +177,10 @@ export default class CourseEditorComponent extends React.Component {
                                 List Widget
                                 <span className="float-right">
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-up"></i>
+                            <i className="fa fa-arrow-up"></i>
                         </a>
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-down"></i>
+                            <i className="fa fa-arrow-down"></i>
                         </a>
                         <select>
                             <option>List</option>
@@ -187,7 +188,7 @@ export default class CourseEditorComponent extends React.Component {
                             <option>Paragraph</option>
                             <option>Image</option>
                         </select>
-                        <a className="btn btn-warning"><i className="fas fa-trash"></i></a>
+                        <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
                             </span>
                             </h3>
                        </div>
@@ -198,10 +199,10 @@ export default class CourseEditorComponent extends React.Component {
                                 Image Widget
                                 <span className="float-right">
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-up"></i>
+                            <i className="fa fa-arrow-up"></i>
                         </a>
                         <a className="btn btn-info">
-                            <i className="fas fa-arrow-down"></i>
+                            <i className="fa fa-arrow-down"></i>
                         </a>
                         <select>
                             <option>Image</option>
@@ -209,7 +210,7 @@ export default class CourseEditorComponent extends React.Component {
                             <option>Paragraph</option>
                             <option>List</option>
                         </select>
-                        <a className="btn btn-warning"><i className="fas fa-trash"></i></a>
+                        <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
                             </span>
                             </h3>
                         </div>

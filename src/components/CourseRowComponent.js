@@ -3,6 +3,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {updateCourse, deleteCourse} from "../services/CourseService";
+import "font-awesome/css/font-awesome.css"
 
 // declaring editCourse & courseBeingEdited in order to change
 //rowcomp to class
@@ -24,7 +25,6 @@ export default class CourseRowComponent extends React.Component {
     render() {
         return (
             <tr>
-
                 <td>
                     {  //title: if being edited,render input field
                         this.state.editing &&
@@ -43,7 +43,7 @@ export default class CourseRowComponent extends React.Component {
                     { //if not, just render title & label
                         !this.state.editing &&
                         <Link
-                            to={`/edit/${this.props.course._id}`}>{this.props.course.title} {this.props.course._id}</Link>
+                            to="/edit">{this.state.course.title}</Link>
                     }
                 </td>
                 <td>{this.props.course.owner}</td>
@@ -57,7 +57,7 @@ export default class CourseRowComponent extends React.Component {
                 <td>
 
                     <button onClick={() => this.props.deleteCourse(this.props.course)}
-                            className="btn btn-warning">Delete
+                            className="btn btn-warning"><i className="fa fa-trash"></i>
                     </button>
 
 
@@ -65,7 +65,7 @@ export default class CourseRowComponent extends React.Component {
                         !this.state.editing &&
                         <button
                             onClick={() => this.setState({editing: true})}
-                            className="btn btn-primary">Edit
+                            className="btn btn-primary"><i className="fa fa-pencil"></i>
                         </button>
                     }
 
@@ -77,7 +77,7 @@ export default class CourseRowComponent extends React.Component {
                                 updateCourse(this.state.course._id, this.state.course)
                                     .then(status => this.setState({editing: false}))
                             }}
-                            className="btn btn-primary">OK</button>
+                            className="btn btn-primary"><i className="fa fa-check-circle"></i></button>
                     }
                 </td>
             </tr>
