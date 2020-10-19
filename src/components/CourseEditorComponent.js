@@ -11,12 +11,12 @@ import "font-awesome/css/font-awesome.css"
 
 export default class CourseEditorComponent extends React.Component {
 
-    // state = {
-    //     course: {
-    //         _id: "",
-    //         title: ""
-    //     }
-    // }
+    state = {
+        course: {
+            _id: "",
+            title: ""
+        }
+    }
 
     //Route creates properties and passes it to CourseEditor!
     //used to render titles since courseId is a props
@@ -24,22 +24,22 @@ export default class CourseEditorComponent extends React.Component {
         console.log(this.props)
     }
 
-    //route passes ID to course editor
-    // componentDidMount() {
-    //     this.props.findCourseById(this.props.match.params.courseId)
-    //     this.props.findModulesForCourse(this.props.match.params.courseId)
-    //     // console.log(this.props)
-    //     // findCourseById(this.props.match.params.courseId)
-    //     //     .then(actualCourse => this.setState({
-    //     //                                             course: actualCourse
-    //     //                                         }))
-    // }
+    // route passes ID to course editor
+    componentDidMount() {
+        findCourseById(this.props.match.params.courseId)
+        // this.props.findModulesForCourse(this.props.match.params.courseId)
+        console.log(this.props)
+        findCourseById(this.props.match.params.courseId)
+            .then(actualCourse => this.setState({
+                                                    course: actualCourse
+                                                }))
+    }
 
     render() {
         return (
             <div class="container">
                 <h1>Course Editor</h1>
-
+                <p>Title</p>
 
                 <div className="row">
                     <div className="col-4">

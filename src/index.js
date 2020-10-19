@@ -14,6 +14,7 @@ import CourseEditorComponent from "./components/CourseEditorComponent";
 import Profile from "./components/Profile"
 import Register from "./components/Register"
 import Login from "./components/Login"
+import CourseTableComponent from "./components/CourseTableComponet";
 import {CourseManagerComponent} from "./components/CourseManagerComponent";
 
 

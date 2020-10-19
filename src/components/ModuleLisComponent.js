@@ -4,8 +4,8 @@ import moduleService from "../services/ModuleService"
 
 const ModuleListComponent = (
     {
-        course={},
-        modules=[],
+        course = {},
+        modules = [],
         deleteModule,
         createModule,
         updateModule,

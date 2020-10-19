@@ -4,6 +4,8 @@ import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../servi
 import "font-awesome/css/font-awesome.css"
 import CourseTableComponent from "./CourseTableComponet";
 import Profile from "./Profile";
+import CourseCard from "./CourseCard";
+import CourseGrid from "./CourseGrid";
 
 //instance of this class, returns/renders a div
 
@@ -14,13 +16,24 @@ class CourseListComponent extends React.Component {
 
     state = {
         courses: [],
-        courseBeingEdited: {}, //boolean flag
-        layout: 'grid'
+        courseBeingEdited: {},
+        layout: 'table'
 
     }
 
     toggle = () =>
-        alert('toggle')
+        this.setState(prevState =>{
+        if (prevState.layout === 'table') {
+            return ({
+                layout: 'grid'
+            })
+        } else {
+            return ({
+                layout: 'table'
+            })
+        }
+    })
+
 
 
     //lifecycle function fetches courses from data, sets & renders
@@ -71,23 +84,35 @@ class CourseListComponent extends React.Component {
             <div>
                 {/*java classes can keep track of their own state*/}
                 <h1>Course List (Professor: {this.props.instructor}) {this.props.term}</h1>
-                <button onClick={this.toggle}> Toggle </button>
-                {/*{this.state.layout === 'grid' && {Profile} }*/}
-                {/*{this.state.layout === 'table' && CourseTableComponent}*/}
-
+                <button className="btn btn-success" onClick={this.toggle}> Toggle </button>
                 {/*can't use keyword 'class' because its a key word in javascript E6
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
-                <table className="table">
+                    {/*{*/}
+                    {/*    // maps key to value, for courses*/}
+                    {/*    this.state.courses.map(course =>*/}
+                    {/*                               // giving properties/attr to CourseRow obj*/}
+                    {/*                               <CourseRowComponent*/}
+                    {/*                                   key={course._id}*/}
+                    {/*                                   deleteCourse={this.deleteCourse}*/}
+                    {/*                                   course={course}/>*/}
+                    {/*    )*/}
+                    {/*}*/}
                     {
-                        // maps key to value, for courses
-                        this.state.courses.map(course =>
-                                                   //giving properties/attr to CourseRow obj
-                                                   <CourseRowComponent
-                                                       deleteCourse={this.deleteCourse}
-                                                       course={course}/>
-                        )
+                        this.state.layout === 'table' && <CourseTableComponent
+                            courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
                     }
-                </table>
+                    {
+                        this.state.layout === 'grid' &&
+                        // <CourseGrid courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        <div className="card-deck">
+                        <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                            <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                            <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        </div>
+
+                    }
+
                 <button onClick={this.addCourse} className="btn btn-primary">
                     Add a Course
                 </button>

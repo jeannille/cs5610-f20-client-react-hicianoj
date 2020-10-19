@@ -1,39 +1,44 @@
 import CourseRowComponent from "./CourseRowComponent";
 import CourseListComponent from "./CourseListComponent";
+
 import React from "react";
+import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService";
+import CourseGrid from "./CourseGrid";
 
-class CourseTableComponent extends React.Component {
 
-render() {
+/*
+Gets passed courses (in a given state) through parent. Does not handle altering state.
+ */
+// {
+//     let grid = true
+//     let table = false
+// }
+
+const CourseTableComponent = ({courses, deleteCourse, selectCourse}) => {
+
+
     return (
+        <div className="container-lg ">
+            {/*passing toggle func as reference  & not passing args, so no need for lamda*/}
+            <h1>Table View</h1>
+            <div>
+                <table className="table table-bordered ">
+                    <tbody>
+                    {/*// maps key to value, for courses*/}
+                    {courses.map((course, key) =>
+                                     //giving properties/attr to CourseRow obj
+                                     <CourseRowComponent
+                                         key={key}
+                                         deleteCourse={deleteCourse}
+                                         selectCourse={selectCourse}
+                                         course={course}/>
+                    )}
+                    </tbody>
+                </table>
 
-        <div>
-            <table className="table">
-                <tbody>
-                <td>blah</td>
-                <td>test</td>
-                {/*{courses.map((course, key) =>*/}
-                {/*                 <CourseRowComponent course={course} key={key}/>*/}
-                {/*)}*/}
-                {
-                    // maps key to value, for courses
-                    this.state.courses.map(course =>
-                                               //giving properties/attr to CourseRow obj
-                                               <CourseRowComponent
-                                                   deleteCourse={this.deleteCourse}
-                                                   course={course}/>
-                    )
-                }
-
-                </tbody>
-            </table>
-
-
-
-
+            </div>
         </div>
     )
-}
-}
 
+}
 export default CourseTableComponent

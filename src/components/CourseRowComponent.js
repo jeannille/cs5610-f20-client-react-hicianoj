@@ -42,8 +42,12 @@ export default class CourseRowComponent extends React.Component {
                     }
                     { //if not, just render title & label
                         !this.state.editing &&
-                        <Link
-                            to="/edit">{this.state.course.title}</Link>
+                        // <Link
+                        //     to="/edit">{this.state.course.title}</Link>
+                        <Link to={`/edit/${this.state.course._id}`}>
+                            {this.state.course.title}
+                        </Link>
+
                     }
                 </td>
                 <td>{this.props.course.owner}</td>
@@ -57,7 +61,7 @@ export default class CourseRowComponent extends React.Component {
                 <td>
 
                     <button onClick={() => this.props.deleteCourse(this.props.course)}
-                            className="btn btn-warning"><i className="fa fa-trash"></i>
+                            className="btn btn-warning float-right"><i className="fa fa-trash"></i>
                     </button>
 
 
@@ -65,7 +69,8 @@ export default class CourseRowComponent extends React.Component {
                         !this.state.editing &&
                         <button
                             onClick={() => this.setState({editing: true})}
-                            className="btn btn-primary"><i className="fa fa-pencil"></i>
+                            className="btn btn-primary float-right">
+                        <i className="fa fa-pencil"></i>
                         </button>
                     }
 
@@ -77,7 +82,9 @@ export default class CourseRowComponent extends React.Component {
                                 updateCourse(this.state.course._id, this.state.course)
                                     .then(status => this.setState({editing: false}))
                             }}
-                            className="btn btn-primary"><i className="fa fa-check-circle"></i></button>
+                            className="btn btn-primary float-right"><i className="fa fa-check-circle"></i>
+                        </button>
+
                     }
                 </td>
             </tr>
