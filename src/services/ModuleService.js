@@ -1,5 +1,10 @@
+//url paths followed from lecture, don't include id
 const courseUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/courses"
 const moduleUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/modules"
+
+//from assignment
+// const moduleUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/modules/module_id"
+// const courseUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/courses/course_id/modules"
 
 // Creates a new module instance for the course whose ID is courseId
 export const createModule = (courseId, newModule) =>
