@@ -39,3 +39,7 @@ export const deleteModule = (moduleId) =>
         method: "DELETE"
     })
         .then(response => response.json())
+
+export default {
+    updateModule, findModulesForCourse, createModule, deleteModule
+}
