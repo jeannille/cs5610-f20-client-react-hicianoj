@@ -19,6 +19,8 @@ import CourseTableComponent from "./CourseTableComponet";
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
 import "font-awesome/css/font-awesome.css"
 import CourseRowComponent from "./CourseRowComponent";
+import ModuleListComponent from "./ModuleLisComponent"
+import LessonTabs from "./LessonTabs"
 
 //wrap in browser router so things inside can navigate
 //main way of components talking to one another is by passing functions
@@ -119,8 +121,10 @@ export class CourseManagerComponent extends React.Component {
                     {/*<Route path="courses/grid" component={CourseGrid}/>*/}
 
                     {/*"/edit/:course._id"*/}
-                    <Route path={"/edit/"} component={CourseEditorComponent}
-                    />
+                    {/*<Route path={"/edit/"} component={CourseEditorComponent}*/}
+                    {/*/>*/}
+                    <Route path={"/edit/"} render={() => <CourseEditorComponent
+                        />}/>
                     <Route path="/table" exact
                            render={() => <CourseTableComponent
                                courses={this.state.courses}
