@@ -1,6 +1,8 @@
 import React from "react";
 
-
+/*
+The component renders a list of modules from the currently selected course.
+ */
 const ModuleListComponent = () =>
 
         <div className="row">
