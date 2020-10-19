@@ -1,5 +1,11 @@
-const lessonUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/lessons/LESSON_ID/topics"
-const topicUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/topics/TOPIC_ID"
+
+//from assignment format
+// const lessonUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/lessons/LESSON_ID/topics"
+// const topicUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/topics/TOPIC_ID"
+
+//from jose's lecture format
+const lessonUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/lessons"
+const topicUrl = "https://wbdv-generic-server.herokuapp.com/api/hicianoj/topics"
 
 // createTopic(lessonId, topic) creates a new topic instance for the lesson whose ID is lessonId
 export const createTopic = (lessonId, newTopic) =>
