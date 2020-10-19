@@ -5,7 +5,6 @@ import React from "react";
 import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService";
 import CourseGrid from "./CourseGrid";
 
-
 /*
 Gets passed courses (in a given state) through parent. Does not handle altering state.
  */
@@ -16,28 +15,28 @@ Gets passed courses (in a given state) through parent. Does not handle altering 
 
 const CourseTableComponent = ({courses, deleteCourse, selectCourse}) => {
 
-
     return (
-        <div className="container-lg ">
-            {/*passing toggle func as reference  & not passing args, so no need for lamda*/}
-            <h1>Table View</h1>
+        <div className="container-md">
+            <h1>Table View </h1>
             <div>
                 <table className="table table-bordered ">
                     <tbody>
-                    {/*// maps key to value, for courses*/}
-                    {courses.map((course, key) =>
-                                     //giving properties/attr to CourseRow obj
-                                     <CourseRowComponent
-                                         key={key}
-                                         deleteCourse={deleteCourse}
-                                         selectCourse={selectCourse}
-                                         course={course}/>
-                    )}
-                    </tbody>
-                </table>
+
+                {/*// maps key to value, for courses*/}
+                {courses.map((course, key) =>
+                                 //giving properties/attr to CourseRow obj
+                                 <CourseRowComponent
+                                     key={course._id}
+                                     deleteCourse={deleteCourse}
+                                     selectCourse={selectCourse}
+                                     course={course}/>
+                )}
+                </tbody>
+            </table>
 
             </div>
         </div>
+
     )
 
 }

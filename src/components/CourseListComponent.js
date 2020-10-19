@@ -3,11 +3,7 @@ import CourseRowComponent from "./CourseRowComponent";
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
 import "font-awesome/css/font-awesome.css"
 import CourseTableComponent from "./CourseTableComponet";
-import Profile from "./Profile";
-import CourseCard from "./CourseCard";
 import CourseGrid from "./CourseGrid";
-
-//instance of this class, returns/renders a div
 
 //parent of CourseTable and CourseGrid
 class CourseListComponent extends React.Component {
@@ -17,7 +13,7 @@ class CourseListComponent extends React.Component {
     state = {
         courses: [],
         courseBeingEdited: {},
-        layout: 'table'
+        layout: 'table' // flag, will default to table
 
     }
 
@@ -33,7 +29,6 @@ class CourseListComponent extends React.Component {
             })
         }
     })
-
 
 
     //lifecycle function fetches courses from data, sets & renders
@@ -87,29 +82,18 @@ class CourseListComponent extends React.Component {
                 <button className="btn btn-success" onClick={this.toggle}> Toggle </button>
                 {/*can't use keyword 'class' because its a key word in javascript E6
             so that keywords don't collide, JSX forces us to use different tokens ie. style, for*/}
-                    {/*{*/}
-                    {/*    // maps key to value, for courses*/}
-                    {/*    this.state.courses.map(course =>*/}
-                    {/*                               // giving properties/attr to CourseRow obj*/}
-                    {/*                               <CourseRowComponent*/}
-                    {/*                                   key={course._id}*/}
-                    {/*                                   deleteCourse={this.deleteCourse}*/}
-                    {/*                                   course={course}/>*/}
-                    {/*    )*/}
-                    {/*}*/}
                     {
                         this.state.layout === 'table' && <CourseTableComponent
                             courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
                     }
                     {
                         this.state.layout === 'grid' &&
-                        // <CourseGrid courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
-                        <div className="card-deck">
-                        <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
-                        <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
-                            <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
-                            <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
-                        </div>
+                        <CourseGrid courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        // <div className="card-deck">
+                        // <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        // <CourseCard courses = {this.state.courses} deleteCourse={this.deleteCourse}/>
+                        //
+                        // </div>
 
                     }
 
