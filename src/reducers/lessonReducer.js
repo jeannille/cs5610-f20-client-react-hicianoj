@@ -1,13 +1,15 @@
 
+//reducers expect a state, and action (obj with an associated type to it
+//receives actions from dispatch function, when Container calls propertyToDisptachMapper
 export const lessonReducer = (state={}, action)  => {
     switch (action.type) {
-
+        //save button
         case "UPDATE_LESSON": //UPDATE_LESSON updates one lesson whose ID is lessonId
             return {
                 ...state,
                 lessons: state.lessons.map(lesson => lesson._id === action.lesson?action.lesson : lesson)
             }
-
+        //delete button
         case "DELETE_LESSON": // DELETE_LESSON removes lesson whose ID is lessonId
             return {
                 ...state,
@@ -20,7 +22,7 @@ export const lessonReducer = (state={}, action)  => {
                 lessons: action.lessons,
                 moduleId: action.moduleId
             }
-
+        //add lesson button (plus)
         case "CREATE_LESSON_FOR_MODULE": //CREATE_LESSON creates a new lesson instance for the module whose ID is moduleId
             return {
                 ...state,
@@ -33,3 +35,5 @@ export const lessonReducer = (state={}, action)  => {
             return state
     }
 }
+
+export default lessonReducer

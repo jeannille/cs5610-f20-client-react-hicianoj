@@ -1,10 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import moduleService from "../services/ModuleService"
+import moduleReducer from "../reducers/moduleReducer";
 import {Link} from "react-router-dom";
 
 /*
-The component renders a list of modules from the currently selected course.
+Stateless react component, renders a list of modules from the currently selected course. Has
+ properties: course, modules in course, and functions defined in ModuleService.
  */
 const ModuleListComponent = ({
                                  course = {},
@@ -22,7 +24,7 @@ const ModuleListComponent = ({
             {
                 modules.map(module =>
                                 <li key={module._id}>
-                                    <button
+                                    <button //action
                                         onClick={() => deleteModule(module)}>
                                         Delete
                                     </button>

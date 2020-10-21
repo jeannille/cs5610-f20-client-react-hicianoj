@@ -1,4 +1,7 @@
 
+/*
+Reducer that controls list of modules.
+ */
 
 const initialState = {
     modules: []

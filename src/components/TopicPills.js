@@ -1,6 +1,14 @@
 import React from "react";
 
-const TopicPills = () =>
+const TopicPills = ({
+                        lesson={},
+                        tabs=[],
+                        deleteTopic,
+                        creatTopic,
+                        updateTopic,
+                        edit,
+                        ok,
+                    }) =>
 
     <div>
         <ul className="nav nav-pills wbdv-topic-pill-list">

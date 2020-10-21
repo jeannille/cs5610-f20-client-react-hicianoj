@@ -108,6 +108,4 @@ class CourseListComponent extends React.Component {
 //{} notifies that  this is an expression that needs to be evaluated 58:17
 //wrap in an outer div to be able to grab as one component 1:01
 
-// you can declare at most one default
-
 export default CourseListComponent

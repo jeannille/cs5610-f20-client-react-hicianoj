@@ -10,244 +10,51 @@ import {findCourseById} from "../services/CourseService";
 import "font-awesome/css/font-awesome.css"
 import CourseTableComponent from "./CourseTableComponet";
 import ModuleListComponent from "./ModuleLisComponent";
-import LessonTabs from "./LessonTabs";
-import TopicPills from "./TopicPills"
-import WidgetList from "./WidgetList";
 
-const CourseEditorComponent = () =>
+class CourseEditorComponent extends React.Component {
 
-    <div className="container">
+    state = {
+        course: {
+            _id: "",
+            title: ""
+        }
+    }
 
-    <div className="row">
-<div className="col-4">
-<h2>Modules</h2>
-    <ModuleListComponent/>
-</div>
-<div className="col-8">
-<h2>Lessons</h2>
-    <LessonTabs/>
-    <TopicPills/>
-    <WidgetList/>
-</div>
-</div>
-    </div>
+    //Route creates properties and passes it to CourseEditor (passes courseId)
+    //used to render titles since courseId is a props
+    componentDidMount()
+    {
+        console.log(this.props)
+        // this.props.findModulesForCourse(this.props.match.params.courseId)
+        findCourseById(this.props.match.params.courseId)
+            .then(actualCourse => this.setState({
+                                                    course: actualCourse
+                                                }))
+    }
+    render()
+    {
+        return (
+            <div className="container">
+                <h1>Course Editor {this.props.match.params.courseId}</h1>
+                <h2>{this.state.course.title}</h2>
+                <div className="row">
+                    <div className="col-4">
+                        <h2>Modules</h2>
+                        <ModuleListComponent/>
+                    {/*    modules on left size 4*/}
+                    </div>
+                    {/*right hand side, lessons/topics/widgets size 8*/}
+                    <div className="col-8">
+                        <h1>Lessons</h1>
+                        <h1>Topics</h1>
+                        <h1>Widgets</h1>
 
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 
-//     state = {
-//         course: {
-//             _id: "",
-//             title: ""
-//         }
-//     }
-//
-//     //Route creates properties and passes it to CourseEditor!
-//     //used to render titles since courseId is a props
-//     componentDidMount() {
-//         console.log(this.props)
-//     }
-//
-//     // route passes ID to course editor
-//     componentDidMount() {
-//         findCourseById(this.props.match.params.courseId)
-//         // this.props.findModulesForCourse(this.props.match.params.courseId)
-//         console.log(this.props)
-//         findCourseById(this.props.match.params.courseId)
-//             .then(actualCourse => this.setState({
-//                                                     course: actualCourse
-//                                                 }))
-//     }
-//
-//     render() {
-//         return (
-//             <div class="container">
-//                 <h1>Course Editor</h1>
-//                 <p>Title</p>
-//
-//                 <div className="row">
-//                     <div className="col-4">
-//                         <ul class="list-group wbdv-module-list">
-//                             <li class="list-group-item active wbdv-module-item">Module 1: Intro &
-//                                 Review
-//                                 <i class="fa fa-times float-right wbdv-module-item-delete-btn "></i>
-//                             </li>
-//                             <li class="list-group-item wbdv-module-item">Module 2: Divide & Conquer
-//                                 <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
-//                             </li>
-//                             <li class="list-group-item wbdv-module-item">Module 3 :Dynamic
-//                                 Programming
-//                                 <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
-//                             </li>
-//                             <li class="list-group-item wbdv-module-item"> Module 4: Greedy
-//                                 Algorithms
-//                                 <i class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
-//                             </li>
-//                             <li class="list-group-item wbdv-module-item">Module 5: Graph
-//                                 Algorithms<i
-//                                     class="fa fa-times float-right wbdv-module-item-delete-btn"></i>
-//                             </li>
-//
-//                             <li class="list-group-item">New Module<i
-//                                 class="fa fa-plus float-right wbdv-module-item-delete-btn"></i>
-//                             </li>
-//                         </ul>
-//                     </div>
-//
-//                     <div className="col-8">
-//                         <ul className="nav nav-tabs">
-//                             <li className="nav-item">
-//                                 <a href="#" className="nav-link wbdv-lesson-tabs">Lesson 1</a>
-//                             </li>
-//                             <li className="nav-item">
-//                                 <a href="#" className="nav-link active wbdv-lesson-tabs">Lesson
-//                                     2</a>
-//                             </li>
-//                             <li className="nav-item">
-//                                 <a href="#" className="nav-link wbdv-lesson-tabs">Lesson 3</a>
-//                             </li>
-//                             <li className="nav-item">
-//                                 <a href="#" className="nav-link wbdv-lesson-add-btn">Add Lesson</a>
-//                             </li>
-//                         </ul>
-//
-//                         <br/>
-//
-//                         <ul className="nav nav-pills wbdv-topic-pill-list">
-//                             <li className="nav-item wbdv-topic-pill">
-//                                 <a href="#" className="nav-link">Recurrence Relations</a>
-//                             </li>
-//                             <li className="nav-item wbdv-topic-pill">
-//                                 <a href="#" className="nav-link active">Stable Matching</a>
-//                             </li>
-//                             <li className="nav-item wbdv-topic-pill">
-//                                 <a href="#" className="nav-link">Asymptotic Order of Growth</a>
-//                             </li>
-//                             <li className="nav-item wbdv-topic-pill">
-//                                 <a href="#" className="nav-link wbdv-topic-add-btn"><i
-//                                     className="fa fa-plus fa-.5x"></i> Add
-//                                     topic</a></li>
-//                         </ul>
-//
-//                         <br/>
-//
-//                         <div className="form-group">
-//
-//                             <h3>
-//                                 Heading Widget
-//                                 <span className="float-right">
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-up"></i>
-//                         </a>
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-down"></i>
-//                         </a>
-//                         <select>
-//                             <option>Heading</option>
-//                             <option>Textbook</option>
-//                             <option>Document</option>
-//                             <option>Slides</option>
-//                         </select>
-//                         <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
-//                             </span>
-//                             </h3>
-//
-//                             <input className="form-control" placeholder="enter paragraph text"/>
-//
-//                             <select className="form-control">
-//                                 <option>Heading 1</option>
-//                                 <option>Heading 2</option>
-//                                 <option>Heading 3</option>
-//                                 <option>Heading 4</option>
-//                                 <option>Heading 5</option>
-//                             </select>
-//
-//                             <input className="form-control"
-//                                    title="Name your widget" placeholder="Widget Name"/>
-//                         </div>
-//
-//                         <div className="form-group">
-//                             <h3>
-//                                 Paragraph Widget
-//                                 <span className="float-right">
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-up"></i>
-//                         </a>
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-down"></i>
-//                         </a>
-//                         <select>
-//                             <option>Paragraph</option>
-//                             <option>Heading</option>
-//                             <option>Paragraph</option>
-//                             <option>List</option>
-//                         </select>
-//                         <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
-//                             </span>
-//                             </h3>
-//
-//
-//                             <div className="form-group">
-//                                 <label htmlFor="exampleFormControlTextarea1">Enter text</label>
-//                                 <textarea className="form-control" id="exampleFormControlTextarea1"
-//                                           rows="3"></textarea>
-//                             </div>
-//                         </div>
-//
-//
-//                        <div class = "form-group">
-//
-//                             <h3>
-//                                 List Widget
-//                                 <span className="float-right">
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-up"></i>
-//                         </a>
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-down"></i>
-//                         </a>
-//                         <select>
-//                             <option>List</option>
-//                             <option>Heading</option>
-//                             <option>Paragraph</option>
-//                             <option>Image</option>
-//                         </select>
-//                         <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
-//                             </span>
-//                             </h3>
-//                        </div>
-//
-//
-//                         <div className="form-group">
-//                             <h3>
-//                                 Image Widget
-//                                 <span className="float-right">
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-up"></i>
-//                         </a>
-//                         <a className="btn btn-info">
-//                             <i className="fa fa-arrow-down"></i>
-//                         </a>
-//                         <select>
-//                             <option>Image</option>
-//                             <option>Heading</option>
-//                             <option>Paragraph</option>
-//                             <option>List</option>
-//                         </select>
-//                         <a className="btn btn-warning"><i className="fa fa-trash"></i></a>
-//                             </span>
-//                             </h3>
-//                         </div>
-//
-//                     </div> {/*   column 8 */}
-//
-//
-//                 </div>
-//
-//
-//             </div>
-//         )
-//
-//     }
-//
-// }
 
 export default CourseEditorComponent
