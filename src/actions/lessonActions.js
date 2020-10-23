@@ -1,7 +1,7 @@
-import lessonService from "../services/LessonService"
+
 //these are used in the container
 
-
+import lessonService from "../services/LessonService";
 
 export const deleteLesson = (dispatch, lesson) =>
     lessonService.deleteLesson(lesson._id)
@@ -18,7 +18,6 @@ export const updateLesson = (dispatch, lesson) =>
                                      lesson
                                  })
         )
-
 //create lesson for associated module
 export const createLesson = (dispatch, module, lesson) =>
     lessonService.createLessonForModule(module._id, lesson)

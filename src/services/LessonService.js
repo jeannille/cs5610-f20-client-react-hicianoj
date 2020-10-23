@@ -24,10 +24,9 @@ export const updateLesson = (lesson) =>
     }).then(response => response.json())
 
 export const deleteLesson = lessonId =>
-    fetch(`${lessonUrl}/${lessonId}`,{
+    fetch(`${lessonUrl}/${lessonId}`, {
         method: "DELETE"
     }).then(response => response.json())
-
 
 export default {
     findLessonsForModule,

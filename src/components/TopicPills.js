@@ -11,17 +11,17 @@ const TopicPills = ({
                     }) =>
 
     <div>
-        <ul className="nav nav-pills wbdv-topic-pill-list">
-            <li className="nav-item wbdv-topic-pill">
+        <ul className="nav nav-pills">
+            <li className="nav-item ">
                 <a href="#" className="nav-link">Recurrence Relations</a>
             </li>
-            <li className="nav-item wbdv-topic-pill">
+            <li className="nav-item">
                 <a href="#" className="nav-link active">Stable Matching</a>
             </li>
-            <li className="nav-item wbdv-topic-pill">
+            <li className="nav-item ">
                 <a href="#" className="nav-link">Asymptotic Order of Growth</a>
             </li>
-            <li className="nav-item wbdv-topic-pill">
+            <li className="nav-item ">
                 <a href="#" className="nav-link wbdv-topic-add-btn"><i
                     className="fa fa-plus fa-.5x"/> Add
                     topic</a></li>

@@ -1,8 +1,6 @@
 import moduleService from "../services/ModuleService"
 //these are used in the container
 
-
-
 export const deleteModule = (dispatch, module) =>
     moduleService.deleteModule(module._id)
         .then(statue => dispatch({
@@ -20,7 +18,7 @@ export const updateModule = (dispatch, module) =>
         )
 
 export const createModule = (dispatch, course, module) =>
-    moduleService.createModule(course._id, module)
+    moduleService.createModuleForCourse(course._id, module)
         .then(actualModule => dispatch({
                                            type: CREATE_MODULE,
                                            module: actualModule

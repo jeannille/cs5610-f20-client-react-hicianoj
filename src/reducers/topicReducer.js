@@ -1,6 +1,9 @@
 
+const initialState= {
+    topics:[]
 
-const topicReducer = (state= {}, action) => {
+}
+const topicReducer = (state= initialState, action) => {
     switch (action.type) {
         case "UPDATE_TOPIC": //updates one topic whose ID is topicId
             return {

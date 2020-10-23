@@ -1,20 +1,18 @@
 
-import {UPDATE_LESSON, DELETE_LESSON} from "../actions/lessonActions";
 //reducers expect a state, and action (obj with an associated type to it
 //receives actions from dispatch function, when Container calls propertyToDisptachMapper
 
 
+const initialState = {
+    lessons: []
+}
 
-// const initialState = {
-//     lessons: []
-// }
-
-const lessonReducer = (state={}, action) => {
+const lessonReducer = (state=initialState, action) => {
     switch (action.type) {
         case "UPDATE_LESSON":
             return {
                 ...state,
-                lessons: state.lessons.map(lesson => lesson._id === action.lesson?action.lesson : lesson)
+                lessons: state.lessons.map(lesson => lesson._id === action.lesson ? action.lesson : lesson)
             }
         case "DELETE_LESSON":
             return {
@@ -27,7 +25,7 @@ const lessonReducer = (state={}, action) => {
                 lessons: action.lessons,
                 moduleId: action.moduleId
             }
-        case "CREATE_LESSON_FOR_MODULE":
+        case "CREATE_LESSON":
             return {
                 ...state,
                 lessons: [

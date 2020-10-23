@@ -5,26 +5,24 @@ import {
     deleteWidget,
     updateWidget,
     editWidget,
-    okWidget
-} from "../actions/widgetActions";
+    okWidget} from "../actions/widgetActions";
 
 const WidgetList = ({
-                        widgets = [],
+                        widgets=[],
                         deleteWidget,
                         createWidget,
                         updateWidget,
                         editWidget,
-                        okWidget
-                    }) =>
-    <div className="container">
-        <h3>Widgets</h3>
+                        okWidget}) =>
+    <div>
+        <h1>Widgets!!!</h1>
         <ul>
             {
                 widgets.map(widget =>
-                                <li className="list-group-item">
-                                    <button className="btn float-right"
-                                            onClick={() => deleteWidget(widget)}>
-                                        <i className="fa fa-trash"/>
+                                <li key={widget.id}>
+                                    <button
+                                        onClick={() => deleteWidget(widget)}>
+                                        Delete
                                     </button>
                                     {
                                         widget.editing &&
@@ -34,8 +32,8 @@ const WidgetList = ({
                                                                                   name: event.target.value
                                                                               })}
                                             value={widget.name}/>
-                <button className="btn btn-light" onClick={() => okWidget(widget)}>
-                  <i className="fa fa-check-circle"/>
+                <button onClick={() => okWidget(widget)}>
+                  Ok
                 </button>
                 </span>
                                     }
@@ -43,9 +41,9 @@ const WidgetList = ({
                                         !widget.editing &&
                                         <span>
                   {widget.name}
-                                            <button onClick={() => editWidget(widget)}
-                                                    className="float-right btn">
-                    <i className="fa fa-pencil"/>
+                                            {widget.type}
+                                            <button onClick={() => editWidget(widget)}>
+                    Edit
                   </button>
                 </span>
                                     }
@@ -53,12 +51,9 @@ const WidgetList = ({
                 )
             }
         </ul>
-
-        <button className="btn btn-success float-right" onClick={createWidget}><i
-            className="fa fa-plus-circle"/></button>
+        <button onClick={createWidget}>Create</button>
     </div>
 
-// export default WidgetList
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgetsReducer.widgets
@@ -73,6 +68,6 @@ const propertyToDispatchMapper = (dispatch) => ({
 })
 
 export default connect
-(stateToPropertyMapper,
- propertyToDispatchMapper)
+( stateToPropertyMapper,
+  propertyToDispatchMapper)
 (WidgetList)

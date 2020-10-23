@@ -23,9 +23,9 @@ const ModuleListComponent = (
         <h3>Modules </h3>
         <ul className="list-group">
             <li className="list-group-item active wbdv-module-item">Module 1: Intro &
-                             Review
-                             <i className="fa fa-times float-right"></i>
-                         </li>
+                Review
+                <i className="fa fa-times float-right"/>
+            </li>
 
 
             {
@@ -63,16 +63,15 @@ const ModuleListComponent = (
               </span>
                                     }
                                 </li>
-
                 )
             }
 
-<li className="list-group-item ">
-        <button className="btn btn-success"
-            onClick={() => createModule(course)}>
-            <i className="fa fa-plus-circle"/>
-        </button>
-</li>
+            <li className="list-group-item ">
+                <button className="btn btn-success"
+                        onClick={() => createModule(course)}>
+                    <i className="fa fa-plus-circle"/>
+                </button>
+            </li>
         </ul>
     </div>
 

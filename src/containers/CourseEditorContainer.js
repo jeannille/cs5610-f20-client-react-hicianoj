@@ -14,15 +14,22 @@ class CourseEditorContainer extends React.Component {
     componentDidMount() {
         const courseId = this.props.match.params.courseId
         const moduleId = this.props.match.params.moduleId
+        const lessonId = this.props.match.params.lessonId
         this.props.findCourseById(courseId)
         this.props.findModulesForCourse(courseId)
         if(moduleId) {
             this.props.findLessonsForModule(moduleId)
         }
+        if(lessonId) {
+            this.props.findTopicsForLesson(lessonId)
+        }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
+        const previousModuleId = prevProps.match.params.moduleId
+        const previousTopicId = prevProps.match.params.topicId
         if(moduleId !== prevProps.match.params.moduleId) {
             this.props.findLessonsForModule(moduleId)
         }
@@ -41,7 +48,7 @@ class CourseEditorContainer extends React.Component {
                         <LessonTabsComponent/>
                         </div>
                         <div style={{ paddingBottom: '1rem' }}>
-                        <TopicPills/></div>
+                        <TopicPills/> </div>
                         <div style={{ paddingBottom: '1rem', paddingTop:'1rem' }}>
                             <WidgetList/></div>
                     </div>

@@ -1,8 +1,9 @@
 import React from "react";
-import {lessonReducer} from "../reducers/lessonReducer";
 import {connect} from "react-redux";
 import lessonService from "../services/LessonService";
 import {findCourseById} from "../services/CourseService";
+import moduleService from "../services/ModuleService";
+import {createLesson} from "../actions/lessonActions";
 
 const LessonTabsComponent = (
     {
@@ -48,7 +49,7 @@ const LessonTabsComponent = (
                                 </li>
                 )
             }
-            <button className="btn btn-light" onClick={() => createLessonForModule(moduleId)}>
+            <button className="btn btn-light" onClick={() => createLesson(module)}>
             <i className="fa fa-plus"/>
         </button>
         </ul>
@@ -61,20 +62,38 @@ const stateToPropertyMapper = (state) => ({
     moduleId: state.lessonReducer.moduleId
 })
 
-const dispatchToPropertyMapper = (dispatch) => ({
-    updateLesson: (newLesson) =>
-        lessonService.updateLesson(newLesson)
-            .then(actuaLesson => dispatch({
-                                              type: "UPDATE_LESSON",
-                                              lesson: actuaLesson
-                                          })),
+const propertyToDispatchMapper = (dispatch) => ({
+    //ok button appears when lesson is not being updated
+    ok: (lesson) =>
+        lessonService.updateLesson(lesson._id, {
+            ...lesson, editing: false
+        }).then(status => dispatch({
+                                       type: "UPDATE_LESSON",
+                                       lesson: {...lesson, editing: false}
+                                   })),
+    edit: (lesson) =>
+        lessonService.updateLesson(lesson._id, {
+            ...lesson, editing: true
+        }).then(status =>
+                    dispatch({
+                                 type: "UPDATE_LESSON",
+                                 lesson: {...lesson, editing: true}
+                             })),
+
+    // updateLesson: (newLesson) =>
+    //     lessonService.updateLesson(newLesson)
+    //         .then(actuaLesson => dispatch({
+    //                                           type: "UPDATE_LESSON",
+    //                                           lesson: actuaLesson
+    //                                       })),
+
     deleteLesson: (lessonId) =>
         lessonService.deleteLesson(lessonId)
             .then(status => dispatch({
                                          type: "DELETE_LESSON",
                                          lessonId
                                      })),
-    createLessonForModule: (moduleId) =>
+    createLesson: (moduleId) =>
         lessonService.createLessonForModule(
             moduleId, {
                 title: "New Lesson"
@@ -82,10 +101,16 @@ const dispatchToPropertyMapper = (dispatch) => ({
             .then(actualLesson => dispatch({
                                                type: "CREATE_LESSON_FOR_MODULE",
                                                lesson: actualLesson
-                                           }))
+                                           })),
+    updateLesson: (lesson) =>
+        dispatch({
+                     type: "UPDATE_LESSON",
+                     lesson: lesson
+                 })
+
 })
 
 export default connect
 (stateToPropertyMapper,
- dispatchToPropertyMapper)
+ propertyToDispatchMapper)
 (LessonTabsComponent)
