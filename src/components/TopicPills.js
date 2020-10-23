@@ -23,7 +23,7 @@ const TopicPills = ({
             </li>
             <li className="nav-item wbdv-topic-pill">
                 <a href="#" className="nav-link wbdv-topic-add-btn"><i
-                    className="fa fa-plus fa-.5x"></i> Add
+                    className="fa fa-plus fa-.5x"/> Add
                     topic</a></li>
         </ul>
     </div>

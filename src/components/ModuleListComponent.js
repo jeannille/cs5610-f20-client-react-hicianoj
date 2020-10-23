@@ -1,43 +1,50 @@
 import React from "react";
 import {connect} from "react-redux";
 import moduleService from "../services/ModuleService"
-import moduleReducer from "../reducers/moduleReducer";
 import {Link} from "react-router-dom";
 
-/*
-Stateless react component, renders a list of modules from the currently selected course. Has
- properties: course, modules in course, and functions defined in ModuleService.
- */
-const ModuleListComponent = ({
-                                 course = {},
-                                 modules = [],
-                                 deleteModule,
-                                 createModule,
-                                 updateModule,
-                                 edit,
-                                 ok,
-                             }) =>
+// /*
+// Stateless react component, renders a list of modules from the currently selected course. Has
+//  properties: course, modules in course, and functions defined in ModuleService.
+//  */
 
+const ModuleListComponent = (
+    {
+        course = {},
+        modules = [],
+        deleteModule,
+        createModule,
+        updateModule,
+        edit,
+        ok,
+    }) =>
     <div>
         <h1>Modules for {course.title}</h1>
-        <ul>
+        <ul className="list-group">
+            <li className="list-group-item active wbdv-module-item">Module 1: Intro &
+                             Review
+                             <i className="fa fa-times float-right"></i>
+                         </li>
+
+
             {
                 modules.map(module =>
-                                <li key={module._id}>
-                                    <button //action
-                                        onClick={() => deleteModule(module)}>
-                                        Delete
+                                <li key={module._id} className="list-group-item">
+                                    <button className="btn btn-danger float-right"
+                                            onClick={() => deleteModule(module)}>
+                                        <i className="fa fa-trash-o"/>
                                     </button>
+
                                     {
                                         !module.editing &&
                                         <span>
-                  <button onClick={() => edit(module)}>
-                    <i className="fa fa-pencil"></i>
+                  <button onClick={() => edit(module)} className="btn btn-warning float-right">
+                    <i className="fa fa-pencil"/>
                   </button>
                   <Link to={`/edit/${course._id}/modules/${module._id}`}>
                     {module.title}
                   </Link>
-                </span>
+                                        </span>
                                     }
                                     {
                                         module.editing &&
@@ -55,13 +62,17 @@ const ModuleListComponent = ({
               </span>
                                     }
                                 </li>
+
                 )
             }
-        </ul>
-        <button
+
+<li className="list-group-item ">
+        <button className="btn btn-success"
             onClick={() => createModule(course)}>
-            Create
+            <i className="fa fa-plus-circle"/>
         </button>
+</li>
+        </ul>
     </div>
 
 // export default ModuleListComponent
@@ -105,6 +116,11 @@ const propertyToDispatchMapper = (dispatch) => ({
                      type: "UPDATE_MODULE",
                      module: module
                  })
+    // moduleService.updateModule(module._id, module)
+    //   .then(status => dispatch({
+    //     type: "UPDATE_MODULE",
+    //     module: module
+    //   }))
 })
 
 export default connect

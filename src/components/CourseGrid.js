@@ -11,25 +11,27 @@ import {Link} from "react-router-dom";
 import {createCourse, findAllCourses, deleteCourse} from "../services/CourseService";
 import CourseCard from "./CourseCard";
 
-const CourseGrid = (courses) =>
 
+const CourseGrid = ({courses, instructor, term, toggle}) =>
 
     <div>
         <div>
+            <h1>Professor {instructor} {term}</h1>
             <h2>Course Grid</h2>
+            <button class="toggleBtn"className="btn btn-success" onClick={toggle}> <Link to="/table">Toggle</Link> </button>
         </div>
         {
             //div className Row Start
             <div className = "row">
                 {
                     //column size  for each card
-                    courses.courses.map(function(course) {
+                    courses.map(function(course, key) {
                         return <div className = " col-lg-4">
                             <ul>
                                 <CourseCard
-                                    key={course._id}
-                                    deleteCourse={courses.deleteCourse}
-                                    course={course}/>
+                                    key={key}
+                                    course={course}
+                                    deleteCourse={courses.deleteCourse} />
                             </ul>
                         </div>
 

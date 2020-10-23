@@ -1,8 +1,7 @@
 import moduleService from "../services/ModuleService"
+//these are used in the container
 
-export const DELETE_MODULE = "DELETE_MODULE"
-export const UPDATE_MODULE = "UPDATE_MODULE"
-export const CREATE_MODULE = "CREATE_MODULE"
+
 
 export const deleteModule = (dispatch, module) =>
     moduleService.deleteModule(module._id)
@@ -26,3 +25,7 @@ export const createModule = (dispatch, course, module) =>
                                            type: CREATE_MODULE,
                                            module: actualModule
                                        }))
+
+export const DELETE_MODULE = "DELETE_MODULE"
+export const UPDATE_MODULE = "UPDATE_MODULE"
+export const CREATE_MODULE = "CREATE_MODULE"

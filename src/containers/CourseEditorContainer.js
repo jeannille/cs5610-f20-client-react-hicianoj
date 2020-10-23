@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 import moduleService from "../services/ModuleService"
 import lessonService from "../services/LessonService"
 import LessonTabs from "../components/LessonTabsComponent";
-import WidgetListContainer from "./WidgetListContainer";
+import LessonTabsComponent from "../components/LessonTabsComponent";
+import TopicPills from "../components/TopicPills";
 
 class CourseEditorContainer extends React.Component {
 
@@ -35,10 +36,14 @@ class CourseEditorContainer extends React.Component {
                     <div className="col-4">
                         <ModuleListComponent/>
                     </div>
-                    <div className="col-8">
-                        <LessonTabs/>
-                        <h1>Topics</h1>
-                        <WidgetList/>
+                    <div className="col-8 container">
+                        <div style={{ paddingBottom: '1rem' }}>
+                        <LessonTabsComponent/>
+                        </div>
+                        <div style={{ paddingBottom: '1rem' }}>
+                        <TopicPills/></div>
+                        <div style={{ paddingBottom: '1rem', paddingTop:'2rem' }}>
+                            <WidgetList/></div>
                     </div>
                 </div>
             </div>

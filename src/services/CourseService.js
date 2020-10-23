@@ -13,13 +13,14 @@ export const createCourse = (newCourse) =>
         headers: {
             'content-type': 'application/json'
         }
-    }).then(response => response.json())
-
+    })
+        .then(response => response.json())
 /*
 Retrieves all course instances as an array of courses
  */
 export const findAllCourses = () =>
-    fetch(url).then(response => response.json())
+    fetch(url)
+        .then(response => response.json())
 
 /*
 Retrieves a course instance that matches the id parameter
@@ -41,7 +42,6 @@ export const updateCourse = (courseId, newCourse) =>
         }
     })
         .then(response => response.json())
-
 /*
 Deletes course instance whose id matches the id parameter.
  */

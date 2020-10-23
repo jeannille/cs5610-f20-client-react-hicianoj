@@ -9,7 +9,13 @@ import React from "react";
 import {findCourseById} from "../services/CourseService";
 import "font-awesome/css/font-awesome.css"
 import CourseTableComponent from "./CourseTableComponet";
-import ModuleListComponent from "./ModuleLisComponent";
+import ModuleListComponent from "./ModuleListComponent";
+import WidgetList from "./WidgetList";
+import WidgetListContainer from "../containers/WidgetListContainer";
+import ModuleListContainer from "../containers/ModuleListContainer";
+import moduleService from "../services/ModuleService";
+import lessonService from "../services/LessonService";
+import {connect} from "react-redux";
 
 class CourseEditorComponent extends React.Component {
 
@@ -19,35 +25,36 @@ class CourseEditorComponent extends React.Component {
             title: ""
         }
     }
-
-    //Route creates properties and passes it to CourseEditor (passes courseId)
-    //used to render titles since courseId is a props
-    componentDidMount()
-    {
+    //
+    // // given a course, find it's modules
+    // // Route creates properties and passes it to CourseEditor (passes courseId)
+    // // used to render titles since courseId is a props of course
+    componentDidMount() {
         console.log(this.props)
         // this.props.findModulesForCourse(this.props.match.params.courseId)
-        findCourseById(this.props.match.params.courseId)
+        findCourseById(this.props.match.params.courseId) //findCourseById from propMapper
             .then(actualCourse => this.setState({
                                                     course: actualCourse
                                                 }))
     }
-    render()
-    {
+
+    render() {
         return (
             <div className="container">
-                <h1>Course Editor {this.props.match.params.courseId}</h1>
-                <h2>{this.state.course.title}</h2>
+                {this.props.match.params.courseId}
+                <h1>Currently editing: </h1>
+                <h2>{this.state.course.title} testtt </h2>
                 <div className="row">
                     <div className="col-4">
-                        <h2>Modules</h2>
                         <ModuleListComponent/>
-                    {/*    modules on left size 4*/}
+                        {/*    modules on left size 4*/}
                     </div>
                     {/*right hand side, lessons/topics/widgets size 8*/}
                     <div className="col-8">
-                        <h1>Lessons</h1>
+                        <h1>Lessons what</h1>
                         <h1>Topics</h1>
-                        <h1>Widgets</h1>
+                        <WidgetList/>
+
 
                     </div>
                 </div>
@@ -56,5 +63,8 @@ class CourseEditorComponent extends React.Component {
     }
 }
 
-
 export default CourseEditorComponent
+
+
+
+

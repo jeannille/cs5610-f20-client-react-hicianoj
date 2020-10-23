@@ -1,4 +1,4 @@
-import widgetReducer from "../reducers/widgetsReducer";
+
 /*
 widgetActions are then used in widgetReducer so it calculates and updates state accordingly.
  */
@@ -9,6 +9,7 @@ export const editWidget = (dispatch, widget) =>
 export const okWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget: {...widget, editing: false}})
 
+//gets handed to widgetsReducer, and case will be "UPDATE_WIDGET"
 export const updateWidget = (dispatch, widget) =>
     dispatch({type: UPDATE_WIDGET, widget})
 

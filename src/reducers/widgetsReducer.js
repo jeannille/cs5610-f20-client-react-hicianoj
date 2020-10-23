@@ -1,6 +1,5 @@
 import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET} from "../actions/widgetActions"
 
-//json obj containing array of widgets
 const initialState = {
     widgets: [
         {
@@ -45,5 +44,4 @@ const widgetReducer = (state = initialState, action) => {
     }
 }
 
-//exports widget reducer, container will receive via connect its mapper args
 export default widgetReducer

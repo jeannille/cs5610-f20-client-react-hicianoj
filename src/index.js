@@ -12,10 +12,6 @@ import * as serviceWorker from './serviceWorker';
 import {CourseManagerComponent} from "./components/CourseManagerComponent";
 import {Provider, connect} from "react-redux";
 import {combineReducers, createStore} from "redux";
-import HelloContainer from "./containers/HelloContainer";
-import Counter from "./components/Counter";
-import CounterContainer from "./containers/CounterContainer";
-import Hello from "./components/Hello";
 import fsm from "./reducers/fsm"
 import widgetsReducer from "./reducers/widgetsReducer";
 import moduleReducer from "./reducers/moduleReducer";
@@ -24,24 +20,21 @@ import lessonReducer from "./reducers/lessonReducer";
 
 //https://redux.js.org/api/combinereducers
 // MAP of multiple reducers, we can refer to rither one. each is repsonsible for its states
+//shortcut since key:value have same chars
 const reducers = combineReducers({
-                                     fsm, widgetsReducer
-                                     //shortcut since key:value have same chars
+                                     fsm, widgetsReducer, moduleReducer, courseReducer, lessonReducer
                                  })
 
-// moduleReducer, courseReducer, lessonReducer
-
-//reducer feeds updated state to store variable
 const store = createStore(reducers)
+//reducer feeds updated state to store variable
+
+
 
 //Providers uses store and feeds it to specific components requesting a connect (need state update)
+//Provider provides the state through the store const
 ReactDOM.render(
-    //Provider provides the state through the store const
     <Provider store={store}>
         <CourseManagerComponent/>
-        <HelloContainer/>
-        <CounterContainer/>
-        {/*<Counter/>*/}
     </Provider>,
     document.getElementById('root')
 );

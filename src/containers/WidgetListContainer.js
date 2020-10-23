@@ -10,13 +10,13 @@ import WidgetList from "../components/WidgetList";
 
 //state is provided here by Provider (which has store of states)
 // stateToPropertyManager maps all properties to their states
+//connect then takes in the state:property map, and gives WidgetList its respective property state
 const stateToPropertyMapper = (state) => ({
-    widgets: state.widgetsReducer.widgets //get data
+    widgets: state.widgetsReducer.widgets
 })
 
-//propertyToDispatchMapper
-
-//connect then takes in the state:property map, and gives WidgetList its respective property state
 export default connect
-(stateToPropertyMapper) //feed extracted state info to WidgetList
+(stateToPropertyMapper)
 (WidgetList)
+
+

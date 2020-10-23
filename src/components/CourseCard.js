@@ -18,11 +18,13 @@ export default class CourseCard extends React.Component {
                     <h6 className="card-title">{this.props.course.title}</h6>
                     <p className="card-text">Description of course.</p>
                     {/*<a href="/edit" className="btn btn-primary">More...</a>*/}
-                    <Link className="btn btn-primary"
-                          onClick={this.props.selectCourse}
-                          to={`/edit/${this.props.course.id}`}>
-                        More...
-                    </Link>
+                    {/*<Link className="btn btn-primary"*/}
+                    {/*      onClick={this.props.selectCourse}*/}
+                    {/*      to={`/edit/${this.props.course.id}`}>*/}
+                    {/*    More...*/}
+                    {/*</Link>*/}
+                    <Link className="btn btn-primary" onClick={this.props.selectCourse}
+                          to={`/edit/${this.props.course._id}`}>Edit</Link>
                 </div>
             </div>
         )

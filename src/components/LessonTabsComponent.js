@@ -1,45 +1,45 @@
 import React from "react";
+import {lessonReducer} from "../reducers/lessonReducer";
 import {connect} from "react-redux";
 import lessonService from "../services/LessonService";
-import {lessonReducer} from "../reducers/lessonReducer"
+import {findCourseById} from "../services/CourseService";
 
-
-const LessonTabs = ({
-                        moduleId,
-                        lessons = [],
-                        createLessonForModule,
-                        deleteLesson,
-                        updateLesson
-                    }) =>
-
+const LessonTabsComponent = (
+    {
+        moduleId,
+        lessons=[],
+        createLessonForModule,
+        deleteLesson,
+        updateLesson
+    }) =>
     <div>
-        <h1>Lessons ({moduleId})</h1>
+        {/* ({moduleId})*/}
+        <h1>Lessons</h1>
         <ul className="nav nav-tabs">
             {
                 lessons.map(lesson =>
                                 <li key={lesson._id} className="nav-item">
                                     <a class="nav-link">
-                                        <button onClick={() => deleteLesson(lesson._id)}>
-                                            <i className="fa fa-times"></i>
+                                        <button onClick={() => deleteLesson(lesson._id)}
+                                                className="btn btn-md float-right">
+                                            <i className="fa fa-trash-o "/>
                                         </button>
 
                                         {
                                             !lesson.editing &&
                                             <span>
-                    <button onClick={() =>
-                        updateLesson({...lesson, editing: true})
-                    }>
-                <i className="fa fa-pencil"></i>
+                    <button onClick={() => updateLesson({...lesson, editing: true})}
+                            className="btn btn-md float-right">
+                <i className="fa fa-pencil"/>
               </button>
                                                 {lesson.title}
-                  </span>
-                                        }
+                  </span>}
                                         {
                                             lesson.editing &&
                                             <span>
               <button onClick={() =>
                   updateLesson({...lesson, editing: false})}>
-                <i className="fa fa-check"></i>
+                <i className="fa fa-check"/>
               </button>
                     <input value={lesson.title}/>
                   </span>
@@ -48,10 +48,12 @@ const LessonTabs = ({
                                 </li>
                 )
             }
-        </ul>
-        <button onClick={() => createLessonForModule(moduleId)}>
-            Create
+            <button className="btn btn-light" onClick={() => createLessonForModule(moduleId)}>
+            <i className="fa fa-plus"/>
         </button>
+        </ul>
+
+        <br/>
     </div>
 
 const stateToPropertyMapper = (state) => ({
@@ -86,26 +88,4 @@ const dispatchToPropertyMapper = (dispatch) => ({
 export default connect
 (stateToPropertyMapper,
  dispatchToPropertyMapper)
-(LessonTabs)
-
-//     <div className>
-//         <ul className="nav nav-tabs">
-//             <li className="nav-item">
-//                 <a href="#" className="nav-link wbdv-lesson-tabs">Lesson 1</a>
-//             </li>
-//             <li className="nav-item">
-//                 <a href="#" className="nav-link active wbdv-lesson-tabs">Lesson
-//                     2</a>
-//             </li>
-//             <li className="nav-item">
-//                 <a href="#" className="nav-link wbdv-lesson-tabs">Lesson 3</a>
-//             </li>
-//             <li className="nav-item">
-//                 <a href="#" className="nav-link wbdv-lesson-add-btn">Add Lesson</a>
-//             </li>
-//         </ul>
-//
-//
-//     </div>
-//
-// export default LessonTabs
+(LessonTabsComponent)
