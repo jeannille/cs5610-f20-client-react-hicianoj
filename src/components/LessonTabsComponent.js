@@ -14,7 +14,7 @@ const LessonTabsComponent = (
     }) =>
     <div>
         {/* ({moduleId})*/}
-        <h1>Lessons</h1>
+        <h3>Lessons</h3>
         <ul className="nav nav-tabs">
             {
                 lessons.map(lesson =>

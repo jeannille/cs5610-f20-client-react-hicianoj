@@ -42,7 +42,7 @@ class CourseEditorContainer extends React.Component {
                         </div>
                         <div style={{ paddingBottom: '1rem' }}>
                         <TopicPills/></div>
-                        <div style={{ paddingBottom: '1rem', paddingTop:'2rem' }}>
+                        <div style={{ paddingBottom: '1rem', paddingTop:'1rem' }}>
                             <WidgetList/></div>
                     </div>
                 </div>

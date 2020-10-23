@@ -17,7 +17,7 @@ const WidgetList = ({
                         okWidget
                     }) =>
     <div className="container">
-        <h1>Widgets</h1>
+        <h3>Widgets</h3>
         <ul>
             {
                 widgets.map(widget =>

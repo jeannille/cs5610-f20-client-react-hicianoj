@@ -19,7 +19,8 @@ const ModuleListComponent = (
         ok,
     }) =>
     <div>
-        <h1>Modules for {course.title}</h1>
+        <h2>Currently editing: <br/> <i>{course.title}</i></h2>
+        <h3>Modules </h3>
         <ul className="list-group">
             <li className="list-group-item active wbdv-module-item">Module 1: Intro &
                              Review

@@ -1,20 +1,9 @@
 import CourseRowComponent from "./CourseRowComponent";
 
-
-
-
 import React from "react";
 // import {findAllCourses, deleteCourse, createCourse} from "../services/CourseService";
 import CourseGrid from "./CourseGrid";
 import {Link, NavLink} from "react-router-dom";
-
-/*
-Gets passed courses (in a given state) through parent. Does not handle altering state.
- */
-// {
-//     let grid = true
-//     let table = false
-// }
 
 const CourseTableComponent = ({courses, layout,  deleteCourse, selectCourse, updateCourse, instructor, term, toggle, addCourse}) => {
 

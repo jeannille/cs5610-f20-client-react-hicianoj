@@ -11,12 +11,8 @@ import "font-awesome/css/font-awesome.css"
 import CourseTableComponent from "./CourseTableComponet";
 import ModuleListComponent from "./ModuleListComponent";
 import WidgetList from "./WidgetList";
-import WidgetListContainer from "../containers/WidgetListContainer";
-import ModuleListContainer from "../containers/ModuleListContainer";
-import moduleService from "../services/ModuleService";
-import lessonService from "../services/LessonService";
-import {connect} from "react-redux";
 
+//no longer being used in CourseManager
 class CourseEditorComponent extends React.Component {
 
     state = {
