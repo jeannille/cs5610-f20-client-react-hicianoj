@@ -121,7 +121,7 @@ const WidgetList = ({
                                                 />
                                             }
                                             <button onClick={() => editWidget(widget)}>
-                                                <i class="fa fa-pencil-square-o"></i>
+                                                <i className="fa fa-pencil-square-o"></i>
                                   </button>
                                 </span>
                                     }
