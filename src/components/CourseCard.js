@@ -1,0 +1,37 @@
+/*
+The CourseGrid component should be responsive.
+The number of grid columns should respond to the size of the screen
+ */
+import React from "react";
+import {Link} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"
+import {deleteCourse} from "../services/CourseService";
+
+
+export default class CourseCard extends React.Component {
+    render() {
+        return (
+
+            <div className="card" styles="width=200rem">
+                <img className="card-img-top" alt ="course card"
+                     src="https://picsum.photos/300/200"/>
+                <div className="card-body">
+                    <h6 className="card-title">{this.props.course.title}</h6>
+                    <p className="card-text">Description of course.</p>
+                    {/*<a href="/edit" className="btn btn-primary">More...</a>*/}
+                    {/*<Link className="btn btn-primary"*/}
+                    {/*      onClick={this.props.selectCourse}*/}
+                    {/*      to={`/edit/${this.props.course.id}`}>*/}
+                    {/*    More...*/}
+                    {/*</Link>*/}
+                    <Link className="btn btn-primary" onClick={this.props.selectCourse}
+                          to={`/edit/${this.props.course._id}`}>Edit</Link>
+                    <button className={"btn btn-danger"}>Delete</button>
+                </div>
+            </div>
+
+
+        )
+    }
+}
+
