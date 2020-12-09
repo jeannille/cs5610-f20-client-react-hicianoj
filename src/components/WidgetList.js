@@ -120,8 +120,6 @@ const WidgetList = ({
                                                     deleteWidget={deleteWidget}
                                                 />
                                             }
-
-
                                             <button onClick={() => editWidget(widget)}>
                                                 <i class="fa fa-pencil-square-o"></i>
                                   </button>
