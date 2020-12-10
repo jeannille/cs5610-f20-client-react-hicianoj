@@ -6,7 +6,7 @@ import {
     updateWidget,
     editWidget,
     okWidget,
-    widgetOrder
+    updateWidgetOrder
 
 } from "../actions/widgetActions";
 import HeadingWidget from "./widgets/HeadingWidget";
@@ -23,6 +23,30 @@ Widget List iterates over list of widgets received from local java server.
 
 //functions to handle up and down buttons
 
+function handleMove (id, direction, widgets, updateWidgetOrder, topicId) {
+    // const {items} = this.state
+
+    // {alert("entered handleMove")}
+
+
+    const position = widgets.findIndex((i) => i.id === id)
+    if (position < 0) {
+        throw new Error("Given item not found.")
+    } else if (direction === UP && position === 0 || direction === DOWN && position === widgets.length - 1) {
+        return // canot move outside of array
+    }
+
+    const item = widgets[position] // save item for later
+    const newWidgets = widgets.filter((i) => i.id !== id) // remove item from array
+    newWidgets.splice(position + direction, 0, item) // puts item back into array into its new position
+
+    // {alert(JSON.stringify(newWidgets))}
+
+    // this.setState({widgets: newWidgets})
+    updateWidgetOrder(newWidgets,topicId);
+
+}
+
 const WidgetList = ({
                         topicId = {},
                         widgets = [],
@@ -31,7 +55,7 @@ const WidgetList = ({
                         updateWidget,
                         editWidget,
                         okWidget,
-                        widgetOrder
+                        updateWidgetOrder
                     }) =>
     <div>
         <h3>Widgets</h3>
@@ -61,11 +85,11 @@ const WidgetList = ({
                                             {
                                                 widget.editing &&
                                                 <span className="float-right">
-                        <a className="btn btn-info">
-                            <i className="fa fa-arrow-up"></i>
+                        <a className="btn btn-info" onClick={() => handleMove(widget.id, UP, widgets, updateWidgetOrder, topicId)} >
+                            <i className="fa fa-arrow-up" ></i>
                         </a>
                         <a className="btn btn-info">
-                            <i className="fa fa-arrow-down"></i>
+                            <i className="fa fa-arrow-down" onClick={() => handleMove(widget.id, DOWN, widgets, updateWidgetOrder, topicId)}></i>
                         </a>
                                                     {/* dropdown menu to update value of widget type*/}
                             <select onChange={(event) => okWidget({
@@ -120,7 +144,7 @@ const WidgetList = ({
                                                     deleteWidget={deleteWidget}
                                                 />
                                             }
-                                            <button onClick={() => editWidget(widget)}>
+                                            <button className = "btn btn-warning float-right" onClick={() => editWidget(widget)}>
                                                 <i className="fa fa-pencil-square-o"></i>
                                   </button>
                                 </span>
@@ -155,7 +179,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     updateWidget: (widget) => updateWidget(dispatch, widget),
     editWidget: (widget) => editWidget(dispatch, widget),
     okWidget: (widget) => okWidget(dispatch, widget),
-    widgetOrder: (newWidgets, topicId) => widgetOrder(dispatch, newWidgets, topicId)
+    updateWidgetOrder: (newWidgets, topicId) => updateWidgetOrder(dispatch, newWidgets, topicId)
 })
 
 export default connect

@@ -57,17 +57,16 @@ const deleteWidget = (wid) =>
 //no need to add response, since java server deletes
 //returns nothing, void deleteWidget
 
-const widgetOrder = (topicId, topicWidgets) => {
+export const updateWidgetOrder = (newWidgets, topicId) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`, {
         method: "PUT",
-        body: JSON.stringify(topicWidgets),
+        body: JSON.stringify(newWidgets),
         headers: {
             "content-type": "application/json"
         }
     })
         .then(response => response.json())
-}
 //export in order to use in actions
 export default {
-    widgetOrder, findAllWidgets, createWidget, findWidgetsForTopic, deleteWidget, updateWidget
+    updateWidgetOrder, findAllWidgets, createWidget, findWidgetsForTopic, deleteWidget, updateWidget
 }

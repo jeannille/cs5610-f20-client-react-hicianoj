@@ -60,9 +60,9 @@ export const createWidget = (dispatch, topicId) =>
                                      topicId: topicId
                                  })) // send widget to reducer
 
-export const widgetOrder = (dispatch, newWidgets, topicId) =>
-    widgetService.widgetOrder(newWidgets, topicId)
-        .then(updatedWidgetOrder => dispatch({
-                                                 type: "REORDER_WIDGETS",
-                                                 updatedWidgetOrder: updatedWidgetOrder
-                                             }));
+export const updateWidgetOrder = (dispatch, newWidgets, topicId) =>
+    widgetService.updateWidgetOrder(newWidgets, topicId)
+        .then(responseNewWidgetOrder => dispatch({
+                                                     type: "UPDATE_WIDGET_ORDER",
+                                                     responseNewWidgetOrder
+                                                 }));
