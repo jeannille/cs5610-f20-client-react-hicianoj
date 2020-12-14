@@ -19,8 +19,8 @@ const ParagraphWidget = (
 
             {
                     widget.editing &&
-                    <div>
-                            <select onChange={ (event) => okWidget({
+                    <div className= "form-group">
+                            <select className = "float-right" onChange={ (event) => okWidget({
                                                                            ...widget,
                                                                            type: event.target.value
                                                                    })}
@@ -33,8 +33,8 @@ const ParagraphWidget = (
                             </select>
 
 
-                            <button type="button" className="btn btn-success pull-right" onClick={() => okWidget(widget)}>
-                                    Save
+                            <button type="button" className="btn btn-success float-right" onClick={() => okWidget(widget)}>
+                                    <i className = "fa fa-check"></i>
                             </button>
 
                             <h3>Paragraph</h3>
@@ -51,9 +51,9 @@ const ParagraphWidget = (
                                     {widget.text}
                             </div>
 
-                            <button type="button" className="btn btn-danger pull-right"
+                            <button type="button" className="btn btn-danger float-right"
                                     onClick={() => deleteWidget(widget)}>
-                                    Delete
+                                   <i className = "fa fa-trash"></i>
                             </button>
 
                     </div>

@@ -1,8 +1,5 @@
 import React from "react";
 
-// import widgetTypeDropDownList from "./widgetTypeDropDownList";
-
-
 class ListWidgetComponent extends React.Component {
 
     state = {
@@ -16,7 +13,7 @@ class ListWidgetComponent extends React.Component {
                 {
                     this.props.widget.editing &&
                     <div>
-                        <select onChange={ (event) => this.props.okWidget({
+                        <select className=" mdb-select md-form float-right" onChange={ (event) => this.props.okWidget({
                                                                               ...this.props.widget,
                                                                               type: event.target.value                  })}
                                 value="widget type" name="userSelectedWidgetType">
@@ -25,12 +22,10 @@ class ListWidgetComponent extends React.Component {
                             <option value="PARAGRAPH"> Paragraph </option>
                             <option value="LIST"> List </option>
                             <option value="IMAGE"> Image </option>
-
-
                         </select>
 
                         <button type="button" className="btn btn-success pull-right" onClick={() => this.props.okWidget({...this.props.widget})}>
-                            Save
+                            <i className = "fa fa-check"></i>
                         </button>
 
                         <h3> List </h3>
@@ -80,12 +75,10 @@ class ListWidgetComponent extends React.Component {
                             }
                         </div>
 
-                        <button type="button" className="btn btn-danger pull-right"
+                        <button type="button" className="btn btn-danger float-right"
                                 onClick={() => this.props.deleteWidget(this.props.widget)}>
-                            Delete
+                            <i className = "fa fa-trash"></i>
                         </button>
-
-
                     </div>
                 }
                 {
@@ -115,9 +108,7 @@ class ListWidgetComponent extends React.Component {
                                 })}
                             </ul>
                         }
-
                     </div>
-
                 }
             </div>
 

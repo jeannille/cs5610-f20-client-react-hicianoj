@@ -22,7 +22,7 @@ const ImageWidget = (
             widget.editing &&
             <div>
 
-                <select onChange={(event) => okWidget({
+                <select className = "float-right" onChange={(event) => okWidget({
                                                           ...widget,
                                                           type: event.target.value
                                                       })}
@@ -37,7 +37,7 @@ const ImageWidget = (
 
                 <button type="button" className="btn btn-success pull-right"
                         onClick={() => okWidget(widget)}>
-                    Save
+                    <i className = "fa fa-check"></i>
                 </button>
 
                 <h3> Image </h3>
@@ -58,7 +58,7 @@ const ImageWidget = (
 
                 <button type="button" className="btn btn-danger pull-right"
                         onClick={() => deleteWidget(widget)}>
-                    Delete
+                    <i className = "fa fa-trash"></i>
                 </button>
 
 

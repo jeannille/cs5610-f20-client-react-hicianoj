@@ -19,7 +19,7 @@ const HeadingWidget = (
             widget.editing &&
             <div>
 
-                <select onChange={ (event) => okWidget({
+                <select className = "float-right" onChange={ (event) => okWidget({
                                                            ...widget,
                                                            type: event.target.value
                                                        })}
@@ -33,7 +33,7 @@ const HeadingWidget = (
                 </select>
 
                 <button type="button" className="btn btn-success float-right" onClick={() => okWidget(widget)}>
-                    Save
+                    <i className = "fa fa-check"></i>
                 </button>
 
                 <h3>Heading</h3>
@@ -123,9 +123,8 @@ const HeadingWidget = (
 
                 <button type="button" className="btn btn-danger pull-right"
                         onClick={() => deleteWidget(widget)}>
-                    Delete
+                    <i className = "fa fa-trash"></i>
                 </button>
-
             </div>
         }
         {

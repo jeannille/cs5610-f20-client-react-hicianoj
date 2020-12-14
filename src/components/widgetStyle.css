@@ -1,5 +1,8 @@
 
-
+button {
+    margin-right: 2px;
+    margin-bottom: 5px;
+}
 .list-preview{
     white-space: pre-line;
 }

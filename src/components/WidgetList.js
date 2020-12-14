@@ -49,9 +49,9 @@ const WidgetList = ({
                         okWidget,
                         updateWidgetOrder
                     }) =>
-    <div>
+    <div className={"container container-fluid"}>
 
-        <h5 className={"wbdv-editor-component-header"}> Widgets </h5>
+        <h3> Widgets </h3>
 
         {/* TOGGLE BUTTON */}
         {/*<ToggleSwitch widgets={widgets}/>*/}
@@ -66,7 +66,7 @@ const WidgetList = ({
 
 
                                     <button type="button" className="btn btn-warning pull-right" onClick={() => editWidget(widget)}>
-                                        Edit
+                                        <i className = "fa fa-pencil"></i>
                                     </button>
 
 
