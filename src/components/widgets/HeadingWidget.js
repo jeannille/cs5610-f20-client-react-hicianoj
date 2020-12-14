@@ -1,76 +1,271 @@
 import React from "react";
-import widgets from "../WidgetList"
-/*
-Widgets will handle if edit rendering.
- */
-//pass widget, if it has editing, display etc
-const HeadingWidget = ( {widget, updateWidget, ok, editing, okWidget}) =>
+
+//example fro Web Dev Spring class
+// https://www.youtube.com/watch?v=pY-PR0Ev50A&list=PL_GGiAMracOXfTX3jKjjdbFUNhzV9s9bD&index=171
+
+const HeadingWidget = (
+
+    {
+        widget,
+        updateWidget,
+        okWidget,
+        deleteWidget,
+    }) =>
+
     <div>
-        { //if widget is being edited, display the following
+
+        {/*<h5> HeadingWidget Component, widget being passed  {JSON.stringify(widget)}  </h5>*/}
+        {
             widget.editing &&
             <div>
-                <select onChange={ (event) =>
-                    updateWidget({...widget, size: event.target.value })}
-                        className="form-control">
-                    <option value="1"> Heading 1</option>
-                    <option value="2"> Heading 2 </option>
-                    <option value="3"> Heading 3</option>
-                    <option value="4">Heading 4</option>
-                    <option value="5">Heading 5</option>
-                    <option value="6">Heading 6</option>
+
+                <select onChange={ (event) => okWidget({
+                                                           ...widget,
+                                                           type: event.target.value
+                                                       })}
+                        value="widget type" name="userSelectedWidgetType" >
+                    <option value="Widget Type"> Widget Type </option>
+                    <option value="HEADING"> Heading </option>
+                    <option value="PARAGRAPH"> Paragraph </option>
+                    <option value="LIST"> List </option>
+                    <option value="IMAGE"> Image </option>
+
                 </select>
-                <input className="form-control" placeholder="Name"/>
 
-                <div>
-                    <span>
-                        <input  className="form-control" placeholder="Heading Text"
-                                onChange={ (event) =>
-                                    updateWidget({...widget, text: event.target.value })}/>
-                        <button className="btn btn-info float-right" onClick={() => ok(widget)}>
-                            Save Widget <i className="fa fa-check-circle"/>
-                        </button>
-                        </span>
-                </div>
+                <button type="button" className="btn btn-success float-right" onClick={() => okWidget(widget)}>
+                    Save
+                </button>
 
+                <h3>Heading</h3>
+                <input  className="form-control" placeholder="Text"
+                        onChange={ (event) =>
+                            updateWidget({...widget, text: event.target.value })}/>
+                <select name={"headingSize"} className="form-control"
+                        onChange={ (event) =>
+                            updateWidget({...widget, size: event.target.value })}>
+                    <option value={"1"}>Heading 1</option>
+                    <option value={"2"}>Heading 2</option>
+                    <option value={"3"}>Heading 3</option>
+                    <option value={"4"}>Heading 4</option>
+                    <option value={"5"}>Heading 5</option>
+                    <option value={"6"}>Heading 6</option>
+                </select>
+                <input placeholder="Name" className="form-control"
+                       onChange={ (event) =>
+                           updateWidget({...widget, name: event.target.value })}/>
+
+                <h3> Preview  </h3>
+
+                {/*
+                    NOTE :: UPON fresh the widget.size becomes an Integer
+                    but otherwise when editing it is a string. The following
+                    if/else statements try to capture both the possibilities
+                    of strings and integers. SERVER -- stores size as an
+                    Integer. But the CLIENT Reducer doesn't specify --
+                    the response returns the object and it probably gets
+                    parsed as a string. So that why on first DOM mount
+                    it pulls widget.size as a Integer. Then all subsequent
+                    updates go through the Reducer as a JSON Object then
+                    string.
+                */}
+                {
+                    widget.size === 1 &&
+                    <h1>{widget.text}</h1>
+                }
+                {
+                    widget.size === 2 &&
+                    <h2>{widget.text}</h2>
+                }
+                {
+                    widget.size === 3 &&
+                    <h3>{widget.text}</h3>
+                }
+                {
+                    widget.size === 4 &&
+                    <h4>{widget.text}</h4>
+                }
+                {
+                    widget.size === 5 &&
+                    <h5>{widget.text}</h5>
+                }
+                {
+                    widget.size === 6 &&
+                    <h6>{widget.text}</h6>
+                }
+
+
+
+                {
+                    widget.size === "1" &&
+                    <h1>{widget.text}</h1>
+                }
+                {
+                    widget.size === "2" &&
+                    <h2>{widget.text}</h2>
+                }
+                {
+                    widget.size === "3" &&
+                    <h3>{widget.text}</h3>
+                }
+                {
+                    widget.size === "4" &&
+                    <h4>{widget.text}</h4>
+                }
+                {
+                    widget.size === "5" &&
+                    <h5>{widget.text}</h5>
+                }
+                {
+                    widget.size === "6" &&
+                    <h6>{widget.text}</h6>
+                }
+
+
+                <button type="button" className="btn btn-danger pull-right"
+                        onClick={() => deleteWidget(widget)}>
+                    Delete
+                </button>
 
             </div>
         }
-        { //while widget is not being edited, display header text with selected header value
-
-
+        {
             !widget.editing &&
-         <div>
-             {
-                 widget.size === 1 &&
-                 <h1>{widget.text} </h1>
-             }
-             {
-                 widget.size === 2 &&
-                 <h2>{widget.text}  </h2>
-             }
-             {
-                 widget.size === 3 &&
-                 <h3>{widget.text} </h3>
-             }
-             {
-                 widget.size === 4 &&
-                 <h4>{widget.text}</h4>
-             }
-             {
-                 widget.size === 5 &&
-                 <h5>{widget.text}</h5>
-             }
-             {
-                 widget.size === 6 &&
-                 <h6>{widget.text}</h6>
-             }
+            <div>
+
+                {
+                    widget.size === 1 &&
+                    <h1>{widget.text}</h1>
+                }
+                {
+                    widget.size === 2 &&
+                    <h2>{widget.text}</h2>
+                }
+                {
+                    widget.size === 3 &&
+                    <h3>{widget.text}</h3>
+                }
+                {
+                    widget.size === 4 &&
+                    <h4>{widget.text}</h4>
+                }
+                {
+                    widget.size === 5 &&
+                    <h5>{widget.text}</h5>
+                }
+                {
+                    widget.size === 6 &&
+                    <h6>{widget.text}</h6>
+                }
 
 
 
+                {
+                    widget.size === "1" &&
+                    <h1>{widget.text}</h1>
+                }
+                {
+                    widget.size === "2" &&
+                    <h2>{widget.text}</h2>
+                }
+                {
+                    widget.size === "3" &&
+                    <h3>{widget.text}</h3>
+                }
+                {
+                    widget.size === "4" &&
+                    <h4>{widget.text}</h4>
+                }
+                {
+                    widget.size === "5" &&
+                    <h5>{widget.text}</h5>
+                }
+                {
+                    widget.size === "6" &&
+                    <h6>{widget.text}</h6>
+                }
 
+            </div>
 
-         </div>
         }
     </div>
 
 export default HeadingWidget
+
+
+
+// import React from "react";
+// import widgets from "../WidgetList"
+// /*
+// Widgets will handle if edit rendering.
+//  */
+// //pass widget, if it has editing, display etc
+// const HeadingWidget = ( {widget, updateWidget, ok, editing, okWidget}) =>
+//     <div>
+//         { //if widget is being edited, display the following
+//             widget.editing &&
+//             <div>
+//                 <select onChange={ (event) =>
+//                     updateWidget({...widget, size: event.target.value })}
+//                         className="form-control">
+//                     <option value="1"> Heading 1</option>
+//                     <option value="2"> Heading 2 </option>
+//                     <option value="3"> Heading 3</option>
+//                     <option value="4">Heading 4</option>
+//                     <option value="5">Heading 5</option>
+//                     <option value="6">Heading 6</option>
+//                 </select>
+//                 <input className="form-control" placeholder="Name"/>
+//
+//                 <div>
+//                     <span>
+//                         <input  className="form-control" placeholder="Heading Text"
+//                                 onChange={ (event) =>
+//                                     updateWidget({...widget, text: event.target.value })}/>
+//                         <button className="btn btn-info float-right" onClick={() => ok(widget)}>
+//                             Save Widget <i className="fa fa-check-circle"/>
+//                         </button>
+//                         </span>
+//                 </div>
+//
+//
+//             </div>
+//         }
+//         { //while widget is not being edited, display header text with selected header value
+//
+//
+//             !widget.editing &&
+//          <div>
+//              {
+//                  widget.size === 1 &&
+//                  <h1>{widget.text} </h1>
+//              }
+//              {
+//                  widget.size === 2 &&
+//                  <h2>{widget.text}  </h2>
+//              }
+//              {
+//                  widget.size === 3 &&
+//                  <h3>{widget.text} </h3>
+//              }
+//              {
+//                  widget.size === 4 &&
+//                  <h4>{widget.text}</h4>
+//              }
+//              {
+//                  widget.size === 5 &&
+//                  <h5>{widget.text}</h5>
+//              }
+//              {
+//                  widget.size === 6 &&
+//                  <h6>{widget.text}</h6>
+//              }
+//
+//
+//
+//
+//
+//          </div>
+//         }
+//     </div>
+//
+// export default HeadingWidget

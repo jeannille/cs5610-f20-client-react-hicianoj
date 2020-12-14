@@ -51,6 +51,9 @@ class CourseEditorContainer extends React.Component {
         if (topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
+        // if (topicId !== prevProps.match.params.topicId) {
+        //     this.props.findWidgetsForTopic(topicId)
+        // }
         console.log(topicId)
         console.log(lessonId)
         // if (topicId !== prevProps.match.params.topicId) {

@@ -1,0 +1,20 @@
+
+
+.list-preview{
+    white-space: pre-line;
+}
+
+.image-preview{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.widget-item{
+    margin:10px;
+    padding: 50px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: lightgray;
+}
+
+
